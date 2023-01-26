@@ -5,6 +5,7 @@
 
 - [Autenticación en el servicio web](#autenticación-en-el-servicio-web)
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
+- [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
 
