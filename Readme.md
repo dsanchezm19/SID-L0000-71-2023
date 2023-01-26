@@ -57,7 +57,6 @@ Archivo json de la petición
   "comparacion": "INTERVALO",
   "fechaRegistro": "2023-01-24T19:57:12.635Z"
 }
-![image](https://user-images.githubusercontent.com/4852730/214920664-641364a7-a976-43fe-bf00-b47066dc6e17.png)
 
 ```
 
