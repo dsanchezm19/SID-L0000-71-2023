@@ -1,13 +1,13 @@
 # Procedimiento L0000-71 edición 2022
 ### _Documentación técnica_
 
-## Tabla de contenido
+## Archivos de la presentación del curso
 
-- Type some Markdown on the left
-- See HTML in the right
+- Archivo de envío de estatus del SID
+- Registro de los instrumentos de medición
 - ✨Magic ✨
 
-## Práctica 1 - Envío de estatus del SID
+## Registro de los instrumentos de medición
 
 Archivo json de la petición
 
