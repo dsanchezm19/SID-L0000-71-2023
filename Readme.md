@@ -3,61 +3,67 @@
 
 ## Archivos de la presentación del curso
 
-- Archivo de envío de estatus del SID
+- [Autenticación en el servicio web](#autenticación-en-el-servicio-web)
+- [Envío de estatus del SID](#envío-de-estatus-del-sid)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
 
-## Registro de los instrumentos de medición
+## Autenticación en el servicio web
 
-Archivo json de la petición
+Método http: POST
 
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/User/Login
+
+```
+
+_Comentarios_:
+
+Username: Nombre del usuario registrado con LAPEM
+
+Password: Es la contraseña sin cifrar correspondiente al nombre de usuario proporcionado
+
+json de ejemplo:
 ```json
 {
-  "id": "string",
-  "producto": {
-    "id": "",
-    "codigoFabricante": "RP08976",
-    "descripcion": "TRANSFORMADOR PEDESTAL",
-    "descripcionCorta": "TRAFO15KV",
-    "tipoFabricacion": "ARTESANAL",
-    "unidad": "PIEZA",
-    "norma": {
-      "id": "",
-      "clave": "PK3000",
-      "nombre": "TRANSFORMADORES DE DISTRIBUCION TIPO PEDESTAL",
-      "edicion": "2018",
-      "estatus": "VIGENTE",
-      "esCFE": true,
-      "fechaRegistro": "2023-01-24T19:57:12.635Z"
-    },
-    "prototipo": {
-      "id": "",
-      "numero": "E101-2022",
-      "fechaEmision": "2021-01-20T19:57:12.635Z",
-      "fechaVencimiento": "2023-01-20T19:57:12.635Z",
-      "urlArchivo": "C:/tmp/Ejemplo.pdf",
-      "mD5": "",
-      "estatus": "VIGENTE",
-      "fechaRegistro": "2023-01-24T19:57:12.635Z"
-    },
-    "estatus": "ACTIVO",
-    "fechaRegistro": "2023-01-24T19:57:12.635Z"
-  },
-  "prueba": {
-    "id": "",
-    "nombre": "IMPULSO",
-    "estatus": "ACTIVA",
-    "tipoPrueba": "RUTINA",
-    "tipoResultado": "PASA/NO-PASA",
-    "fechaRegistro": "2023-01-24T19:57:12.635Z"
-  },
-  "valor": 12,
-  "valor2": 15,
-  "unidad": "KV",
-  "comparacion": "INTERVALO",
-  "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  "username": "string",
+  "password": "string"
 }
 
 ```
 
-## Plugins
+_Resultado_:
+
+El sistema deberá generar el token criptográfico correspondiente a la sesión del usuario.
+
+body resultante si la respuesta es correcta
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDQVJMT1MgQUxCRVJUTyBTT0xJUyBNQURSSUdBTCIsImZ1bGxOYW1lIjoiQ0FSTE9TIEFMQkVSVE8gU09MSVMgTUFEUklHQUwiLCJ1c2VybmFtZSI6IjlBSkFYIiwicmZjIjoiQ0ZFMzcwODE0UUkwIiwiZW1wcmVzYSI6IkNPTUlTSU9OIEZFREVSQUwgREUgRUxFQ1RSSUNJREFEIiwiSWRFbXByZXNhIjoiMSIsInJvbGUiOiJVc2VyX1NJRCIsImp0aSI6ImY1Y2E1MzY1LWY1NzUtNGQ0Ny04MDU2LWMxMzRjYWY0OThkMyIsImV4cCI6MTY3NDg0NzI4OSwiaXNzIjoiaHR0cHM6Ly9sYXBlbS5jZmUuZ29iLm14L3NpZC8iLCJhdWQiOiJodHRwczovL2xhcGVtLmNmZS5nb2IubXgvc2lkLyJ9.F1Ihgrv93C11Y1mrGSuF_vGnPJ2Exek373i3csSmnFs",
+  "userDetails": {
+    "nombre": "CARLOS ALBERTO SOLIS MADRIGAL",
+    "username": "9AJAX",
+    "password": null,
+    "empresa": "COMISION FEDERAL DE ELECTRICIDAD",
+    "idEmpresa": "1",
+    "rfc": "CFE370814QI0",
+    "rol": "User_SID"
+  }
+}
+```
+
+## Envío de estatus del SID
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/EstadoSID
+
+```
+json de ejemplo:
+```json
+{
+  "estado": "string"
+}
