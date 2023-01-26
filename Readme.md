@@ -12,9 +12,53 @@
 Archivo json de la petición
 
 ```json
-{ "server": "http://127.0.0.1",
-  "url": "ghghgh"
+{
+  "id": "string",
+  "producto": {
+    "id": "",
+    "codigoFabricante": "RP08976",
+    "descripcion": "TRANSFORMADOR PEDESTAL",
+    "descripcionCorta": "TRAFO15KV",
+    "tipoFabricacion": "ARTESANAL",
+    "unidad": "PIEZA",
+    "norma": {
+      "id": "",
+      "clave": "PK3000",
+      "nombre": "TRANSFORMADORES DE DISTRIBUCION TIPO PEDESTAL",
+      "edicion": "2018",
+      "estatus": "VIGENTE",
+      "esCFE": true,
+      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+    },
+    "prototipo": {
+      "id": "",
+      "numero": "E101-2022",
+      "fechaEmision": "2021-01-20T19:57:12.635Z",
+      "fechaVencimiento": "2023-01-20T19:57:12.635Z",
+      "urlArchivo": "C:/tmp/Ejemplo.pdf",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+    },
+    "estatus": "ACTIVO",
+    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  },
+  "prueba": {
+    "id": "",
+    "nombre": "IMPULSO",
+    "estatus": "ACTIVA",
+    "tipoPrueba": "RUTINA",
+    "tipoResultado": "PASA/NO-PASA",
+    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  },
+  "valor": 12,
+  "valor2": 15,
+  "unidad": "KV",
+  "comparacion": "INTERVALO",
+  "fechaRegistro": "2023-01-24T19:57:12.635Z"
 }
+![image](https://user-images.githubusercontent.com/4852730/214920664-641364a7-a976-43fe-bf00-b47066dc6e17.png)
+
 ```
 
 ## Plugins
