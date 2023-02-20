@@ -28,8 +28,8 @@ Password: Es la contraseña sin cifrar correspondiente al nombre de usuario prop
 json de ejemplo:
 ```json
 {
-  "username": "string",
-  "password": "string"
+  "username": "9AJAX",
+  "password": "58974"
 }
 
 ```
@@ -63,8 +63,18 @@ Endpoint:
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/EstadoSID
 
 ```
+_Comentarios_:
+
+El estado a reportar es: EN_ESPERA ó EN_PRUEBAS
+
 json de ejemplo:
 ```json
 {
-  "estado": "string"
+  "estado": "EN_PRUEBAS"
 }
+```
+_Resultado_:
+
+El sistema almacenará el estado reportado, correspondiente a la sesión del usuario.
+
+
