@@ -77,8 +77,7 @@ json de ejemplo:
 ```
 _Resultado_:
 
-Status: 200
-El sistema almacenará el estado reportado, correspondiente a la sesión del usuario.
+Status: 200 - El sistema almacenará el estado reportado, correspondiente a la sesión del usuario.
 
 ## Registrar instrumentos de medición
 
@@ -120,6 +119,5 @@ json de ejemplo:
 ```
 _Resultado_:
 
-Status: 200
-El sistema almacenará los instrumentos de medición, correspondiente a la sesión del usuario.
+Status: 200 - El sistema almacena el instrumento de medición, correspondiente a la sesión del usuario.
 
