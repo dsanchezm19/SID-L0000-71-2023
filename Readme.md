@@ -79,4 +79,50 @@ _Resultado_:
 
 El sistema almacenará el estado reportado, correspondiente a la sesión del usuario.
 
+## Registrar instrumentos de medición
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
+
+```
+_Comentarios_:
+
+"id":	Identificador que se genera automáticamente (no ingresar)
+
+"nombre":	Nombre del equipo de medición
+
+"numeroSerie":	Número de serie del equipo de medición
+
+"fechaCalibracion":	Fecha de calibración del equipo
+
+"fechaVencimientoCalibracion":	Fecha de vencimiento de la calibración
+
+"urlArchivo":	URL del archivo de calibración del equipo
+
+"mD5":	Hash del archivo (generado por LAPEM)
+
+"estatus": Estado del instrumento (ACTIVO/INACTIVO)
+
+"fechaRegistro":	Fecha actual 
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "nombre": "Voltímetro",
+  "numeroSerie": "F256989",
+  "fechaCalibracion": "2023-01-18T20:55:05.917Z",
+  "fechaVencimientoCalibracion":"2023-01-18T20:55:05.917Z",  
+  "urlArchivo":"https://unlp.edu.ar/wp-content/uploads/51/27751/5c5a8f71c013ea9277e46bcf4b1658b2.pdf",
+  "mD5": "",
+  "estatus": "ACTIVO",
+  "fechaRegistro": "2023-01-18T20:55:05.917Z"
+}
+```
+_Resultado_:
+
+El sistema almacenará los instrumentos de medición, correspondiente a la sesión del usuario.
 
