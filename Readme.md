@@ -5,6 +5,8 @@
 
 - [Autenticación en el servicio web](#autenticación-en-el-servicio-web)
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
+- [Registrar instrumentos de medición](#registrar-instrumentos-de-medición)
+- [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -120,4 +122,18 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema almacena el instrumento de medición, correspondiente a la sesión del usuario.
+
+## Consultar instrumentos de medición
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
+
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todos los instrumentos de medición correspondientes a la sesión del usuario
 
