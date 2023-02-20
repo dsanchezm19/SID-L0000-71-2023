@@ -90,23 +90,18 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
 ```
 _Comentarios_:
 
-"id":	Identificador que se genera automáticamente (no ingresar)
 
-"nombre":	Nombre del equipo de medición
-
-"numeroSerie":	Número de serie del equipo de medición
-
-"fechaCalibracion":	Fecha de calibración del equipo
-
-"fechaVencimientoCalibracion":	Fecha de vencimiento de la calibración
-
-"urlArchivo":	URL del archivo de calibración del equipo
-
-"mD5":	Hash del archivo (generado por LAPEM)
-
-"estatus": Estado del instrumento (ACTIVO/INACTIVO)
-
-"fechaRegistro":	Fecha actual 
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `nombre` | Nombre del equipo de medición|
+| `numeroSerie` | Número de serie del equipo de medición |
+| `fechaCalibracion` | Fecha de calibración del equipo |
+| `fechaVencimientoCalibracion` | Fecha de vencimiento de la calibración |
+| `urlArchivo` | ruta donde el fabricante almacena el archivo de calibración del equipo |
+| `mD5` | Hash del archivo *(generado por LAPEM, no ingresar)* |
+| `estatus` | Estado del instrumento: **ACTIVO/INACTIVO** |
+| `fechaRegistro` | Fecha actual del registro |
 
 json de ejemplo:
 ```json
@@ -124,5 +119,6 @@ json de ejemplo:
 ```
 _Resultado_:
 
+Status: 200
 El sistema almacenará los instrumentos de medición, correspondiente a la sesión del usuario.
 
