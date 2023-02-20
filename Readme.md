@@ -77,6 +77,7 @@ json de ejemplo:
 ```
 _Resultado_:
 
+Status: 200
 El sistema almacenará el estado reportado, correspondiente a la sesión del usuario.
 
 ## Registrar instrumentos de medición
