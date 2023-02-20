@@ -25,6 +25,8 @@ Username: Nombre del usuario registrado con LAPEM
 
 Password: Es la contraseña sin cifrar correspondiente al nombre de usuario proporcionado
 
+Nota: Solo tendrán acceso los usuarios registrados en SID.
+
 json de ejemplo:
 ```json
 {
