@@ -9,6 +9,7 @@
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
 - [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
+- [Registrar las pruebas](#registrar-las-pruebas)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -190,3 +191,41 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
 _Resultado_:
 
 Status: 200 - Listado con todas las normas correspondientes a la sesión del usuario
+
+## Registrar las pruebas
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prueba
+
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `nombre` | Nombre de la prueba|
+| `estatus` | Estado de la prueba: **ACTIVA/INACTIVA** |
+| `tipoPrueba` | Tipo de prueba **ACEPTACION/RUTINA**|
+| `tipoResultado` | Tipo de resultado **PASA/NO-PASA/SATISFACTORIO/NOSATISFACTORIO** |
+| `fechaRegistro` | Fecha actual del registro |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "nombre": "IMPULSO",
+  "estatus": "ACTIVA",
+  "tipoPrueba": "ACEPTACION",
+  "tipoResultado": "PASA/NO-PASA",
+  "fechaRegistro": "2022-10-10"
+}
+
+
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información de la prueba, correspondiente a la sesión del usuario.
+
