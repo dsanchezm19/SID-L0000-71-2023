@@ -7,6 +7,7 @@
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
 - [Registrar instrumentos de medición](#registrar-instrumentos-de-medición)
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
+- [Registrar las normas con las que se liberan los productos](#registrar-las-normas-con-las-que-se-liberan-los-productos)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -137,3 +138,40 @@ _Resultado_:
 
 Status: 200 - Listado con todos los instrumentos de medición correspondientes a la sesión del usuario
 
+## Registrar las normas con las que se liberan los productos
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
+
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `clave` | Identificador clave de la norma|
+| `nombre` | Nombre de la norma |
+| `edicion` | Año de edición de la norma *(yyyy)*|
+| `estatus` | Estado de la norma: **VIGENTE/OBSOLETA** |
+| `esCFE` | Indicar true si es de CFE, false en caso contrario |
+| `fechaRegistro` | Fecha actual del registro |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "clave": "01000-11",
+  "nombre": "CFE 01000-11-1996",
+  "edicion": "1996",
+  "estatus": "VIGENTE",
+  "esCFE": true,
+  "fechaRegistro": "2022-10-10"
+}
+
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información de la norma, correspondiente a la sesión del usuario.
