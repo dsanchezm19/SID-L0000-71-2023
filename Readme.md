@@ -7,7 +7,8 @@
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
 - [Registrar instrumentos de medición](#registrar-instrumentos-de-medición)
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
-- [Registrar las normas con las que se liberan los productos](#registrar-las-normas-con-las-que-se-liberan-los-productos)
+- [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
+- [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -138,7 +139,7 @@ _Resultado_:
 
 Status: 200 - Listado con todos los instrumentos de medición correspondientes a la sesión del usuario
 
-## Registrar las normas con las que se liberan los productos
+## Registrar la norma con la que se liberan los productos
 
 Método http: POST
 
@@ -175,3 +176,17 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema almacenará la información de la norma, correspondiente a la sesión del usuario.
+
+## Consultar las normas con las que se liberan los productos
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
+
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todas las normas correspondientes a la sesión del usuario
