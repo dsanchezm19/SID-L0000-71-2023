@@ -11,6 +11,7 @@
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
 - [Registrar las pruebas](#registrar-las-pruebas)
 - [Consultar las pruebas](#consultar-las-pruebas)
+- [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -243,4 +244,79 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/prueba
 _Resultado_:
 
 Status: 200 - Listado con todas las pruebas, correspondientes a la sesión del usuario.
+
+## Registrar los valores de referencia
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ValorReferencia
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `producto` | Información del producto |
+| `prototipo` | Información del prototipo |
+| `prueba` | Información de la prueba|
+| `valor` | Valor inicial (mínimo) |
+| `valor2` | Valor final (máximo) |
+| `unidad` | Unidad para medir el valor de referencia |
+| `comparación` | Comparativa de los valores de referencia **RANGO/EXACTO** |
+| `fechaRegistro` | Fecha actual en que se registra la información |
+
+
+json de ejemplo:
+```json
+{
+  "id": "string",
+  "producto": {
+    "id": "",
+    "codigoFabricante": "RP08976",
+    "descripcion": "TRANSFORMADOR PEDESTAL",
+    "descripcionCorta": "TRAFO15KV",
+    "tipoFabricacion": "ARTESANAL",
+    "unidad": "PIEZA",
+    "norma": {
+      "id": "",
+      "clave": "PK3000",
+      "nombre": "TRANSFORMADORES DE DISTRIBUCION TIPO PEDESTAL",
+      "edicion": "2018",
+      "estatus": "VIGENTE",
+      "esCFE": true,
+      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+    },
+    "prototipo": {
+      "id": "",
+      "numero": "E101-2022",
+      "fechaEmision": "2021-01-20T19:57:12.635Z",
+      "fechaVencimiento": "2023-01-20T19:57:12.635Z",
+      "urlArchivo": "C:/tmp/Ejemplo.pdf",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+    },
+    "estatus": "ACTIVO",
+    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  },
+  "prueba": {
+    "id": "",
+    "nombre": "IMPULSO",
+    "estatus": "ACTIVA",
+    "tipoPrueba": "RUTINA",
+    "tipoResultado": "PASA/NO-PASA",
+    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  },
+  "valor": 12,
+  "valor2": 15,
+  "unidad": "KV",
+  "comparacion": "INTERVALO",
+  "fechaRegistro": "2023-01-24T19:57:12.635Z"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará los valores de referencia por producto y prueba , correspondiente a la sesión del usuario.
 
