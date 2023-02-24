@@ -229,3 +229,17 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará la información de la prueba, correspondiente a la sesión del usuario.
 
+## Consultar las pruebas
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/prueba
+
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todas las pruebas, correspondientes a la sesión del usuario.
+
