@@ -10,6 +10,7 @@
 - [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
 - [Registrar las pruebas](#registrar-las-pruebas)
+- [Consultar las pruebas](#consultar-las-pruebas)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
