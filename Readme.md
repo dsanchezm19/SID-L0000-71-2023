@@ -211,7 +211,7 @@ _Comentarios_:
 | `nombre` | Nombre de la prueba|
 | `estatus` | Estado de la prueba: **ACTIVA/INACTIVA** |
 | `tipoPrueba` | Tipo de prueba **ACEPTACION/RUTINA**|
-| `tipoResultado` | Tipo de resultado **PASA/NO-PASA/SATISFACTORIO/NOSATISFACTORIO** |
+| `tipoResultado` | Tipo de resultado **VALOR_REFERENCIA/PASA/NO-PASA** |
 | `fechaRegistro` | Fecha actual del registro |
 
 json de ejemplo:
