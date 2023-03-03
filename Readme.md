@@ -249,8 +249,8 @@ _Comentarios_:
 | --- | --- |
 | `id` | Identificador que se genera automáticamente  *(no ingresar)* |
 | `producto` | [Json del producto](#registrar-producto)|
-| `prototipo` | Json del prototipo(#regisstrar-prototipo) |
-| `prueba` | Información de la prueba|
+| `prototipo` | Json del prototipo(#registrar-prototipo) |
+| `prueba` | Json de la prueba|
 | `valor` | Valor inicial (mínimo) |
 | `valor2` | Valor final (máximo) |
 | `unidad` | Unidad para medir el valor de referencia |
