@@ -12,6 +12,7 @@
 - [Registrar las pruebas](#registrar-las-pruebas)
 - [Consultar las pruebas](#consultar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
+- [Registrar producto](#registrar-producto)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -23,7 +24,6 @@ Método http: POST
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/User/Login
-
 ```
 
 _Comentarios_:
@@ -70,7 +70,6 @@ Método http: POST
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/EstadoSID
-
 ```
 _Comentarios_:
 
@@ -93,7 +92,6 @@ Método http: POST
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
-
 ```
 _Comentarios_:
 
@@ -135,7 +133,6 @@ Método http: GET
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
-
 ```
 
 _Resultado_:
@@ -149,7 +146,6 @@ Método http: POST
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
-
 ```
 _Comentarios_:
 
@@ -174,7 +170,6 @@ json de ejemplo:
   "esCFE": true,
   "fechaRegistro": "2022-10-10"
 }
-
 ```
 _Resultado_:
 
@@ -187,7 +182,6 @@ Método http: GET
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
-
 ```
 
 _Resultado_:
@@ -201,7 +195,6 @@ Método http: POST
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prueba
-
 ```
 _Comentarios_:
 
@@ -224,8 +217,6 @@ json de ejemplo:
   "tipoResultado": "PASA/NO-PASA",
   "fechaRegistro": "2022-10-10"
 }
-
-
 ```
 _Resultado_:
 
@@ -238,7 +229,6 @@ Método http: GET
 Endpoint: 
 ```
 https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/prueba
-
 ```
 
 _Resultado_:
@@ -258,8 +248,8 @@ _Comentarios_:
 | Propiedad | Descripción |
 | --- | --- |
 | `id` | Identificador que se genera automáticamente  *(no ingresar)* |
-| `producto` | Información del producto |
-| `prototipo` | Información del prototipo |
+| `producto` | [Json del producto](#registrar-producto)|
+| `prototipo` | Json del prototipo(#regisstrar-prototipo) |
 | `prueba` | Información de la prueba|
 | `valor` | Valor inicial (mínimo) |
 | `valor2` | Valor final (máximo) |
@@ -319,4 +309,64 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema almacenará los valores de referencia por producto y prueba , correspondiente a la sesión del usuario.
+
+## Registrar producto
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Producto
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `codigoFabricante` | Código del producto como lo identifica el fabricante|
+| `descripcion` | Descripción del producto |
+| `descripcionCorta` | Descripción corta de CFE para identificar el producto |
+| `tipoFabricacion` | Tipo de fabricación **SERIE/LOTE** |
+| `unidad` | Unidades **Pieza/Metro/Tramo/Kilo** |
+| `norma` | Json de la norma |
+| `prototipo` | Json del prototipo |
+| `estatus` | Estado del producto **ACTIVO/INACTIVO** |
+| `fechaRegistro` | Fecha actual del registro |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "codigoFabricante": "Tablero TFCD 125 VCD",
+  "descripcion": "Tablero TFCD para 125 VCD transferencia de 2 fuentes de corriente directa",
+  "descripcionCorta": "TAB125VCD",
+  "tipoFabricacion": "SERIE",
+  "unidad": "Piezas",
+  "norma": {
+    "id": "6388e41a5a5f3032d0a45279",
+    "clave": "CFE K0000-25",
+    "nombre": "NORMA CFE K0000-25",
+    "edicion": "2014",
+    "estatus": "VIGENTE",
+    "esCFE": true,
+    "fechaRegistro": "2023-01-30T20:17:27.981Z"
+  },
+  "prototipo": {
+  "id": "62c5c45bf2479888d0233f21",
+    "numero": "K3100/2300-90",
+    "fechaEmision": "2022-07-06T17:18:33.522Z",
+    "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+    "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+    "mD5": "",
+    "estatus": "VIGENTE",
+    "fechaRegistro": "2022-07-06T17:22:01.61Z"
+  },
+  "estatus": "ACTIVO",
+  "fechaRegistro": "2023-01-30"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información del producto, correspondiente a la sesión del usuario.
+
 
