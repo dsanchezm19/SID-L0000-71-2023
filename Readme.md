@@ -13,6 +13,8 @@
 - [Consultar las pruebas](#consultar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
+- [Registrar prototipo](#registrar-prototipo)
+- [Registrar prueba](#registrar-prueba)
 - [Prácticas](practicas.md)
 - Registro de los instrumentos de medición
 - ✨Magic ✨
@@ -249,8 +251,8 @@ _Comentarios_:
 | --- | --- |
 | `id` | Identificador que se genera automáticamente  *(no ingresar)* |
 | `producto` | [Json del producto](#registrar-producto)|
-| `prototipo` | Json del prototipo(#registrar-prototipo) |
-| `prueba` | Json de la prueba|
+| `prototipo` | [Json del prototipo](#registrar-prototipo) |
+| `prueba` | [Json de la prueba](#registrar-prueba) |
 | `valor` | Valor inicial (mínimo) |
 | `valor2` | Valor final (máximo) |
 | `unidad` | Unidad para medir el valor de referencia |
@@ -369,4 +371,78 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará la información del producto, correspondiente a la sesión del usuario.
 
+## Registrar prototipo
 
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prototipo
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `numero` | Número de identificación del prototipo |
+| `fechaEmision` | Fecha en que se emitió el prototipo |
+| `fechaVencimiento` | Fecha en que se vence el prototipo |
+| `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
+| `md5` | Hash del archivo prototipo *(no ingresar)* |
+| `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
+| `fechaRegistro` | Fecha actual del registro |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "numero": "0589/K3115-E/2023",
+  "fechaEmision": "2020-01-20T19:40:14.065Z",
+  "fechaVencimiento": "2022-01-27T19:40:14.065Z",
+  "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+  "mD5": "",
+  "estatus": "VIGENTE",
+  "fechaRegistro": "2023-02-27T19:40:14.065Z"
+}
+
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información del prototipo, correspondiente a la sesión del usuario.
+
+
+## Registrar prueba
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prueba
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `nombre` | Nombre de la prueba |
+| `estatus` | Estado de la prueba **ACTIVA/INACTIVA** |
+| `tipoPrueba` |Tipo de prueba **ACEPTACION/RUTINA** |
+| `tipoResultado` | Los tipos de resultado pueden ser: **VALOR_REFERENCIA/PASA/NO-PASA** |
+| `fechaRegistro` | Fecha actual del registro |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "nombre": "IMPULSO",
+  "estatus": "ACTIVA",
+  "tipoPrueba": "ACEPTACION",
+  "tipoResultado": "PASA/NO-PASA",
+  "fechaRegistro": "2022-10-10"
+}
+
+
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información de la prueba, correspondiente a la sesión del usuario.
