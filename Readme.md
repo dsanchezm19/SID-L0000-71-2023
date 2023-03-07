@@ -15,9 +15,12 @@
 - [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
 - [Registrar prototipo](#registrar-prototipo)
+- [Consultar los prototipos](#consultar-los-prototipos)
 - [Registrar prueba](#registrar-prueba)
 - [Prácticas](practicas.md)
-- Registro de los instrumentos de medición
+- Registrar los instrumentos de medición
+- [Registrar contrato de CFE](#registrar-contrato-de-cfe)
+- [Consultar contrato de CFE](#consultar-contrato-de-cfe)
 - ✨Magic ✨
 
 ## Autenticación en el servicio web
@@ -314,6 +317,20 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará los valores de referencia por producto y prueba , correspondiente a la sesión del usuario.
 
+## Consultar los valores de referencia
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ValorReferencia
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todos los valores de referencia, correspondientes a la sesión del usuario
+
+
 ## Registrar producto
 
 Método http: POST
@@ -412,6 +429,19 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará la información del prototipo, correspondiente a la sesión del usuario.
 
+## Consultar los prototipos
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prototipo
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todos los prototipos, correspondientes a la sesión del usuario
+
 
 ## Registrar prueba
 
@@ -451,16 +481,55 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará la información de la prueba, correspondiente a la sesión del usuario.
 
+## Registrar contrato de CFE
 
-## Consultar los valores de referencia
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ContratosCFE
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `noContrato` | Número de contrato de CFE |
+| `areaDestinoCFE` | Nombre del área destino de los equipos |
+| `urlArchivo` | Ubicación del fabricante donde se ubica el archivo del contrato de CFE |
+| `mD5` | Hash del archivo del contrato *(no ingresar)* |
+| `estatus` | Los estatus pueden ser: **VIGENTE/VENCIDO** |
+| `fechaEntregaCFE` | Fecha de entrega de los materiales a CFE |
+| `fechaRegistro` | Fecha actual del registro |
+
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "noContrato": "CFE-GRP-0587",
+  "areaDestinoCFE": "Almacén Bajío",
+  "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+  "mD5": "",
+  "estatus": "VIGENTE",
+  "fechaEntregaCFE": "2023-10-05T19:56:57.059Z",
+  "fechaRegistro": "2023-01-30T19:56:57.059Z"
+}
+```
+
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información del contrato de CFE, correspondiente a la sesión del usuario.
+
+## Consultar contrato de CFE
 
 Método http: GET
 
 Endpoint: 
 ```
-https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ ValorReferencia
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ContratosCFE
 ```
 
 _Resultado_:
 
-Status: 200 - Listado con todos los valores de referencia, correspondientes a la sesión del usuario
+Status: 200 - Listado con todos los contratos de CFE registrados, correspondientes a la sesión del usuario
