@@ -12,6 +12,7 @@
 - [Registrar las pruebas](#registrar-las-pruebas)
 - [Consultar las pruebas](#consultar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
+- [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
 - [Registrar prototipo](#registrar-prototipo)
 - [Registrar prueba](#registrar-prueba)
@@ -253,12 +254,13 @@ _Comentarios_:
 | `producto` | [Json del producto](#registrar-producto)|
 | `prototipo` | [Json del prototipo](#registrar-prototipo) |
 | `prueba` | [Json de la prueba](#registrar-prueba) |
-| `valor` | Rango inicial (mínimo) *(solo se utiliza cuando el tipo de "comparacion" sea por "RANGO")* |
-| `valor2` | Rango final (máximo) *(solo se utiliza cuando el tipo de "comparacion" sea por "RANGO")*  |
+| `valor` | Rango inicial (mínimo) *solo se utiliza cuando el tipo de "comparacion" sea por "RANGO"* |
+| `valor2` | Rango final (máximo) *solo se utiliza cuando el tipo de "comparacion" sea por "RANGO"*  |
 | `unidad` | Unidad para medir el valor de referencia |
-| `comparación` | Comparativa de los valores de referencia **RANGO/EXACTO** |
+| `comparacion` | Comparativa de los valores de referencia pueden ser: **VALOR_MINIMO/VALOR_MAXIMO/RANGO** |
 | `fechaRegistro` | Fecha actual en que se registra la información |
 
+> Cuando en la prueba, el valor de "tipoResultado" es **PASA/NO-PASA** NO se utilizan los valores de referencia 
 
 json de ejemplo:
 ```json
@@ -430,6 +432,8 @@ _Comentarios_:
 | `tipoResultado` | Los tipos de resultado pueden ser: **VALOR_REFERENCIA/PASA/NO-PASA** |
 | `fechaRegistro` | Fecha actual del registro |
 
+> Si "tipoResultado" es **PASA/NO-PASA** no se utilizan los referencia
+
 json de ejemplo:
 ```json
 {
@@ -446,3 +450,17 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema almacenará la información de la prueba, correspondiente a la sesión del usuario.
+
+
+## Consultar los valores de referencia
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ ValorReferencia
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todos los valores de referencia, correspondientes a la sesión del usuario
