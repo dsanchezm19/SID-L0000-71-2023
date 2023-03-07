@@ -253,8 +253,8 @@ _Comentarios_:
 | `producto` | [Json del producto](#registrar-producto)|
 | `prototipo` | [Json del prototipo](#registrar-prototipo) |
 | `prueba` | [Json de la prueba](#registrar-prueba) |
-| `valor` | Valor inicial (mínimo) |
-| `valor2` | Valor final (máximo) |
+| `valor` | Rango inicial (mínimo) *(solo se utiliza cuando el tipo de "comparacion" sea por "RANGO")* |
+| `valor2` | Rango final (máximo) *(solo se utiliza cuando el tipo de "comparacion" sea por "RANGO")*  |
 | `unidad` | Unidad para medir el valor de referencia |
 | `comparación` | Comparativa de los valores de referencia **RANGO/EXACTO** |
 | `fechaRegistro` | Fecha actual en que se registra la información |
