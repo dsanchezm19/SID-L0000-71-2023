@@ -15,12 +15,13 @@
 - [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
 - [Registrar prototipo](#registrar-prototipo)
-- [Consultar los prototipos](#consultar-los-prototipos)
+- [Consultar prototipos](#consultar-prototipos)
 - [Registrar prueba](#registrar-prueba)
-- [Prácticas](practicas.md)
-- Registrar los instrumentos de medición
 - [Registrar contrato de CFE](#registrar-contrato-de-cfe)
 - [Consultar contrato de CFE](#consultar-contrato-de-cfe)
+- [Crear expediente de pruebas](#crear-expediente-de-pruebas)
+- [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
+- [Prácticas](practicas.md)
 - ✨Magic ✨
 
 ## Autenticación en el servicio web
@@ -349,8 +350,8 @@ _Comentarios_:
 | `descripcionCorta` | Descripción corta de CFE para identificar el producto |
 | `tipoFabricacion` | Tipo de fabricación **SERIE/LOTE** |
 | `unidad` | Unidades **Pieza/Metro/Tramo/Kilo** |
-| `norma` | Json de la norma |
-| `prototipo` | Json del prototipo |
+| `norma` | [Json de la norma](#registrar-la-norma-con-la-que-se-liberan-los-productos) |
+| `prototipo` | [Json del prototipo](#registrar-prototipo) |
 | `estatus` | Estado del producto **ACTIVO/INACTIVO** |
 | `fechaRegistro` | Fecha actual del registro |
 
@@ -429,7 +430,7 @@ _Resultado_:
 
 Status: 200 - El sistema almacenará la información del prototipo, correspondiente a la sesión del usuario.
 
-## Consultar los prototipos
+## Consultar prototipos
 
 Método http: GET
 
@@ -533,3 +534,112 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ContratosCFE
 _Resultado_:
 
 Status: 200 - Listado con todos los contratos de CFE registrados, correspondientes a la sesión del usuario
+
+## Crear expediente de pruebas
+
+Método http: POST
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Inspeccion/CreaExpedientePruebas
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `claveExpediente` | Clave que identifica el expediente de pruebas |
+| `muestrasExpediente` | Lista de [muestras] del expediente(#registrar-muestra) |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "claveExpediente": "EXP-123",
+  "muestrasExpediente": [
+    {
+      "identificador": "M1-0001",
+      "estatus": "EN_PRUEBA",
+      "fechaRegistro": "2023-01-31T17:53:24.285Z"
+    }
+  ],
+  "ordenFabricacion": {
+    "claveOrdenFabricacion": "OF-02-2023",
+    "producto": {
+      "id": "62c5c5dbf2479888d0233f23",
+      "codigoFabricante": "AISLADOR 138PM",
+      "descripcion": "AISLADOR 138PM MODELO AI867",
+      "descripcionCorta": "AS-AISLADOR 138PM",
+      "tipoFabricacion": "SERIE",
+      "unidad": "PIEZA",
+      "norma": {
+        "id": "62c5c527f2479888d0233f22",
+        "clave": "CFE K0000-25",
+        "nombre": "NORMA CFE K0000-25",
+        "edicion": "2014",
+        "estatus": "VIGENTE",
+        "esCFE": true,
+        "fechaRegistro": "2023-01-31T17:53:24.285Z"
+      },
+      "prototipo": {
+        "id": "62a9f173156b9acb784bb597",
+        "numero": "K311P/2345-2022",
+        "fechaEmision": "2022-06-15T17:53:24.285Z",
+        "fechaVencimiento": "2025-06-15T17:53:24.285Z",
+        "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+        "mD5": "",
+        "estatus": "VIGENTE",
+        "fechaRegistro": "2023-01-31T17:53:24.285Z"
+      },
+      "estatus": "REGISTRADO",
+      "fechaRegistro": "2023-01-31T17:53:24.285Z"
+    },
+    "tipoContrato": "CFE",
+    "contratoCFE": {
+      "id": "63d8216bcb5cc767b6f82300",
+      "noContrato": "CFE-GRP-0587",
+      "areaDestinoCFE": "Almacén Bajío",
+      "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaEntregaCFE": "2023-10-05T17:53:24.285Z",
+      "fechaRegistro": "2023-01-31T17:53:24.285Z"
+    },
+    "partidaContrato": "5",
+    "cantidad": 3,
+    "fechaRegistro": "2023-01-31T17:53:24.285Z"
+  }
+}
+```
+
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información del expediente de pruebas, correspondiente a la sesión del usuario.
+
+## Agregar muestra al expediente de pruebas
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Inspeccion/AgregaMuestraExpediente/{Expediente}
+```
+_Comentarios_:
+
+> `{Expediente}` | Corresponde a la clave que identifica al expediente donde se agregará la muestra 
+
+| Propiedad | Descripción |
+| --- | --- |
+| `noContrato` | Número de contrato de CFE |
+
+
+json de ejemplo:
+```json
+{
+  
+}
+```
+
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información de la muestra en el expediente, correspondiente a la sesión del usuario.
