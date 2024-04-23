@@ -9,6 +9,7 @@
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
 - [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
+- [Actualizar la norma con la que se liberan los productos](#actualizar-la-norma-con-la-que-se-liberan-los-productos)
 - [Registrar las pruebas](#registrar-las-pruebas)
 - [Consultar las pruebas](#consultar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
@@ -164,7 +165,7 @@ _Comentarios_:
 | `edicion` | Año de edición de la norma *(yyyy)*|
 | `estatus` | Estado de la norma: **VIGENTE/OBSOLETA** |
 | `esCFE` | Indicar true si es de CFE, false en caso contrario |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 json de ejemplo:
 ```json
@@ -194,6 +195,43 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
 _Resultado_:
 
 Status: 200 - Listado con todas las normas correspondientes a la sesión del usuario
+
+## Actualizar la norma con la que se liberan los productos
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Norma
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador de la norma a actualizar |
+| `clave` | Identificador clave de la norma|
+| `nombre` | Nombre de la norma |
+| `edicion` | Año de edición de la norma *(yyyy)*|
+| `estatus` | Estado de la norma: **VIGENTE/OBSOLETA** |
+| `esCFE` | Indicar true si es de CFE, false en caso contrario |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+  "id": ""62c5c527f2479888d0233f22"",
+  "clave": "01000-11",
+  "nombre": "CFE 01000-11-1996",
+  "edicion": "1996",
+  "estatus": "VIGENTE",
+  "esCFE": true,
+  "fechaRegistro": "2022-10-10"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema actualizará la información de la norma, correspondiente a la sesión del usuario.
+
 
 ## Registrar las pruebas
 
