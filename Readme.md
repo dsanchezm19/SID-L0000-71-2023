@@ -219,7 +219,7 @@ _Comentarios_:
 json de ejemplo:
 ```json
 {
-  "id": ""62c5c527f2479888d0233f22"",
+  "id": "62c5c527f2479888d0233f22",
   "clave": "01000-11",
   "nombre": "CFE 01000-11-1996",
   "edicion": "1996",
