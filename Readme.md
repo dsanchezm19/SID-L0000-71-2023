@@ -485,7 +485,7 @@ _Comentarios_:
 | `fechaEmision` | Fecha en que se emitió el prototipo |
 | `fechaVencimiento` | Fecha en que se vence el prototipo |
 | `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
-| `md5` | Hash del archivo prototipo *(no ingresar)* |
+| `md5` | Hash del archivo prototipo generado por LAPEM *(no ingresar)* |
 | `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
 | `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
@@ -536,7 +536,7 @@ _Comentarios_:
 | `fechaEmision` | Fecha en que se emitió el prototipo |
 | `fechaVencimiento` | Fecha en que se vence el prototipo |
 | `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
-| `md5` | Hash del archivo prototipo *(no ingresar)* |
+| `md5` | Hash del archivo prototipo generado por LAPEM *(no ingresar)* |
 | `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
 | `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
@@ -555,7 +555,7 @@ json de ejemplo:
 ```
 _Resultado_:
 
-Status: 200 - El sistema almacenará la información del prototipo, correspondiente a la sesión del usuario.
+Status: 200 - El sistema actualiza la información del prototipo, correspondiente a la sesión del usuario.
 
 ## Registrar prueba
 
