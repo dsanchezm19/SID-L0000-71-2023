@@ -7,7 +7,7 @@
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
 - [Registrar instrumentos de medición](#registrar-instrumentos-de-medición)
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
-- [Actualizar instrumentos de medición](#registrar-instrumentos-de-medición)
+- [Actualizar instrumentos de medición](#actualizar-instrumentos-de-medición)
 - [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
 - [Actualizar la norma con la que se liberan los productos](#actualizar-la-norma-con-la-que-se-liberan-los-productos)
