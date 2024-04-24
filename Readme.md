@@ -485,7 +485,7 @@ _Comentarios_:
 | `fechaEmision` | Fecha en que se emitió el prototipo |
 | `fechaVencimiento` | Fecha en que se vence el prototipo |
 | `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
-| `md5` | Hash del archivo prototipo generado por LAPEM *(no ingresar)* |
+| `md5` | Hash del archivo prototipo, se genera por LAPEM *(no ingresar)* |
 | `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
 | `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
@@ -536,7 +536,7 @@ _Comentarios_:
 | `fechaEmision` | Fecha en que se emitió el prototipo |
 | `fechaVencimiento` | Fecha en que se vence el prototipo |
 | `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
-| `md5` | Hash del archivo prototipo generado por LAPEM *(no ingresar)* |
+| `md5` | Hash del archivo prototipo, se genera por LAPEM *(no ingresar)* |
 | `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
 | `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
