@@ -18,6 +18,7 @@
 - [Registrar producto](#registrar-producto)
 - [Registrar prototipo](#registrar-prototipo)
 - [Consultar prototipos](#consultar-prototipos)
+- [Actualizar prototipo](#actualizar-prototipo)
 - [Registrar prueba](#registrar-prueba)
 - [Registrar contrato de CFE](#registrar-contrato-de-cfe)
 - [Consultar contrato de CFE](#consultar-contrato-de-cfe)
@@ -486,7 +487,7 @@ _Comentarios_:
 | `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
 | `md5` | Hash del archivo prototipo *(no ingresar)* |
 | `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 json de ejemplo:
 ```json
@@ -497,8 +498,7 @@ json de ejemplo:
   "fechaVencimiento": "2022-01-27T19:40:14.065Z",
   "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
   "mD5": "",
-  "estatus": "VIGENTE",
-  "fechaRegistro": "2023-02-27T19:40:14.065Z"
+  "estatus": "VIGENTE"
 }
 
 ```
@@ -519,6 +519,43 @@ _Resultado_:
 
 Status: 200 - Listado con todos los prototipos, correspondientes a la sesión del usuario
 
+## Actualizar prototipo
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prototipo
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `numero` | Número de identificación del prototipo |
+| `fechaEmision` | Fecha en que se emitió el prototipo |
+| `fechaVencimiento` | Fecha en que se vence el prototipo |
+| `urlArchivo` | Ruta de ubicación del fabricante donde reside el archivo del prototipo |
+| `md5` | Hash del archivo prototipo *(no ingresar)* |
+| `estatus` | Estado del prototipo **VIGENTE/VENCIDO** |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+  "id": "62c5c45bf2479888d0233f21",
+  "numero": "K3100/2300-90",
+  "fechaEmision": "2022-07-06T17:18:33.522Z",
+  "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+  "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+  "mD5": "",
+  "estatus": "VIGENTE"
+}
+
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información del prototipo, correspondiente a la sesión del usuario.
 
 ## Registrar prueba
 
