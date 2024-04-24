@@ -223,8 +223,7 @@ json de ejemplo:
   "nombre": "CFE 01000-11-1996",
   "edicion": "1996",
   "estatus": "VIGENTE",
-  "esCFE": true,
-  "fechaRegistro": "2022-10-10"
+  "esCFE": true
 }
 ```
 _Resultado_:
