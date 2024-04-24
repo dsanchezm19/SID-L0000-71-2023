@@ -170,13 +170,12 @@ _Comentarios_:
 json de ejemplo:
 ```json
 {
-  "id": "",
-  "clave": "01000-11",
-  "nombre": "CFE 01000-11-1996",
-  "edicion": "1996",
+  "id":"",
+  "clave": "52100-65",
+  "nombre": "Aisladores Sintéticos tipo Suspensión para Tensiones de 13.8 kV hasta 138 kV",
+  "edicion": "2019",
   "estatus": "VIGENTE",
-  "esCFE": true,
-  "fechaRegistro": "2022-10-10"
+  "esCFE": true 
 }
 ```
 _Resultado_:
