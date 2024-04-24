@@ -114,7 +114,7 @@ _Comentarios_:
 | `urlArchivo` | ruta donde el fabricante almacena el archivo de calibración del equipo |
 | `mD5` | Hash del archivo *(generado por LAPEM, no ingresar)* |
 | `estatus` | Estado del instrumento: **ACTIVO/INACTIVO** |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 json de ejemplo:
 ```json
