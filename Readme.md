@@ -7,6 +7,7 @@
 - [Envío de estatus del SID](#envío-de-estatus-del-sid)
 - [Registrar instrumentos de medición](#registrar-instrumentos-de-medición)
 - [Consultar instrumentos de medición](#consultar-instrumentos-de-medición)
+- [Actualizar instrumentos de medición](#registrar-instrumentos-de-medición)
 - [Registrar la norma con la que se liberan los productos](#registrar-la-norma-con-la-que-se-liberan-los-productos)
 - [Consultar las normas con las que se liberan los productos](#consultar-las-normas-con-las-que-se-liberan-los-productos)
 - [Actualizar la norma con la que se liberan los productos](#actualizar-la-norma-con-la-que-se-liberan-los-productos)
@@ -126,8 +127,7 @@ json de ejemplo:
   "fechaVencimientoCalibracion":"2023-01-18T20:55:05.917Z",  
   "urlArchivo":"https://unlp.edu.ar/wp-content/uploads/51/27751/5c5a8f71c013ea9277e46bcf4b1658b2.pdf",
   "mD5": "",
-  "estatus": "ACTIVO",
-  "fechaRegistro": "2023-01-18T20:55:05.917Z"
+  "estatus": "ACTIVO"
 }
 ```
 _Resultado_:
@@ -146,6 +146,46 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
 _Resultado_:
 
 Status: 200 - Listado con todos los instrumentos de medición correspondientes a la sesión del usuario
+
+## Actualizar instrumentos de medición
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Instrumento
+```
+_Comentarios_:
+
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `nombre` | Nombre del equipo de medición|
+| `numeroSerie` | Número de serie del equipo de medición |
+| `fechaCalibracion` | Fecha de calibración del equipo |
+| `fechaVencimientoCalibracion` | Fecha de vencimiento de la calibración |
+| `urlArchivo` | ruta donde el fabricante almacena el archivo de calibración del equipo |
+| `mD5` | Hash del archivo *(generado por LAPEM, no ingresar)* |
+| `estatus` | Estado del instrumento: **ACTIVO/INACTIVO** |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+  "id": "63f3d5bf32320c6cf9a742f4",
+  "nombre": "Voltímetro 897",
+  "numeroSerie": "F256989-897",
+  "fechaCalibracion": "2024-01-10",
+  "fechaVencimientoCalibracion": "2025-01-10",
+  "urlArchivo": "https://unlp.edu.ar/wp-content/uploads/51/27751/5c5a8f71c013ea9277e46bcf4b1658b2.pdf",
+  "mD5": "",
+  "estatus": "ACTIVO"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema actualiza el instrumento de medición correspondiente la sesión del usuario.
 
 ## Registrar la norma con la que se liberan los productos
 
