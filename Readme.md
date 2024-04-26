@@ -16,6 +16,8 @@
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
 - [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
+- [Consultar productos](#consultar-productos)
+- [Actualizar producto](#actualizar-producto)
 - [Registrar prototipo](#registrar-prototipo)
 - [Consultar prototipos](#consultar-prototipos)
 - [Actualizar prototipo](#actualizar-prototipo)
@@ -430,7 +432,7 @@ _Comentarios_:
 | `norma` | [Json de la norma](#registrar-la-norma-con-la-que-se-liberan-los-productos) |
 | `prototipo` | [Json del prototipo](#registrar-prototipo) |
 | `estatus` | Estado del producto **ACTIVO/INACTIVO** |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 json de ejemplo:
 ```json
@@ -467,6 +469,78 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema almacenará la información del producto, correspondiente a la sesión del usuario.
+
+## Consultar productos
+
+Método http: GET
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Producto
+```
+
+_Resultado_:
+
+Status: 200 - Listado con todos los productos, correspondientes a la sesión del usuario
+
+## Actualizar producto
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Producto
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador del producto a actualizar |
+| `codigoFabricante` | Código del producto como lo identifica el fabricante|
+| `descripcion` | Descripción del producto |
+| `descripcionCorta` | Descripción corta de CFE para identificar el producto |
+| `tipoFabricacion` | Tipo de fabricación **SERIE/LOTE** |
+| `unidad` | Unidades **Pieza/Metro/Tramo/Kilo** |
+| `norma` | [Json de la norma](#registrar-la-norma-con-la-que-se-liberan-los-productos) |
+| `prototipo` | [Json del prototipo](#registrar-prototipo) |
+| `estatus` | Estado del producto **ACTIVO/INACTIVO** |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+   "id": "62c5c5dbf2479888d0233f23",
+  "codigoFabricante": "PROD-001-2024",
+  "descripcion": "PRODUCTO P001",
+  "descripcionCorta": "CFE 456464646",
+  "tipoFabricacion": "SERIE",
+  "unidad": "PIEZA",
+    "norma": {
+      "id": "62c5c527f2479888d0233f22",
+      "clave": "CFE K0000-25",
+      "nombre": "NORMA CFE K0000-25",
+      "edicion": "2014",
+      "estatus": "VIGENTE",
+      "esCFE": true,
+      "fechaRegistro": "2022-07-06T17:23:51.971Z"
+    },
+ "prototipo": {
+      "id": "62c5c45bf2479888d0233f21",
+      "numero": "K3100/2300-90",
+      "fechaEmision": "2022-07-06T17:18:33.522Z",
+      "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+      "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaRegistro": "2022-07-06T17:22:01.61Z"
+    },
+   "estatus": "ACTIVO",
+    "fechaRegistro": "2023-01-30T20:50:12.363Z"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema actualizará la información del producto, correspondiente a la sesión del usuario.
 
 ## Registrar prototipo
 
