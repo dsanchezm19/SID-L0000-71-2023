@@ -13,6 +13,7 @@
 - [Actualizar la norma con la que se liberan los productos](#actualizar-la-norma-con-la-que-se-liberan-los-productos)
 - [Registrar las pruebas](#registrar-las-pruebas)
 - [Consultar las pruebas](#consultar-las-pruebas)
+- [Actualizar las pruebas](#actualizar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
 - [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
 - [Actualizar los valores de referencia](#actualizar-los-valores-de-referencia)
@@ -292,18 +293,18 @@ _Comentarios_:
 | `estatus` | Estado de la prueba: **ACTIVA/INACTIVA** |
 | `tipoPrueba` | Tipo de prueba **ACEPTACION/RUTINA**|
 | `tipoResultado` | Tipo de resultado **VALOR_REFERENCIA/PASA/NO-PASA** |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 json de ejemplo:
 ```json
 {
   "id": "",
-  "nombre": "IMPULSO",
+  "nombre": "PRUEBA DE IMPULSO",
   "estatus": "ACTIVA",
   "tipoPrueba": "ACEPTACION",
-  "tipoResultado": "PASA/NO-PASA",
-  "fechaRegistro": "2022-10-10"
+  "tipoResultado": "PASA/NO-PASA"
 }
+
 ```
 _Resultado_:
 
@@ -321,6 +322,40 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/prueba
 _Resultado_:
 
 Status: 200 - Listado con todas las pruebas, correspondientes a la sesión del usuario.
+
+## Actualizar las pruebas
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/Prueba
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador de la prueba a actualizar |
+| `nombre` | Nombre de la prueba|
+| `estatus` | Estado de la prueba: **ACTIVA/INACTIVA** |
+| `tipoPrueba` | Tipo de prueba **ACEPTACION/RUTINA**|
+| `tipoResultado` | Tipo de resultado **VALOR_REFERENCIA/PASA/NO-PASA** |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+  "id": "662fe3b4424cb5b952c85e3f",
+  "nombre": "PRUEBA DE RESISTENCIA OHMICA",
+  "estatus": "ACTIVA",
+  "tipoPrueba": "ACEPTACION",
+  "tipoResultado": "PASA/NO-PASA"
+}
+
+```
+_Resultado_:
+
+Status: 200 - El sistema actualiza la información de la prueba, correspondiente a la sesión del usuario.
 
 ## Registrar los valores de referencia
 
