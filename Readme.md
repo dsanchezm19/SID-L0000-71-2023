@@ -26,6 +26,7 @@
 - [Registrar prueba](#registrar-prueba)
 - [Registrar contrato de CFE](#registrar-contrato-de-cfe)
 - [Consultar contrato de CFE](#consultar-contrato-de-cfe)
+- [Actualizar contrato de CFE](#actualizar-contrato-de-cfe)
 - [Crear expediente de pruebas](#crear-expediente-de-pruebas)
 - [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
 - [Prácticas](practicas.md)
@@ -797,7 +798,7 @@ _Comentarios_:
 | `mD5` | Hash del archivo del contrato *(no ingresar)* |
 | `estatus` | Los estatus pueden ser: **VIGENTE/VENCIDO** |
 | `fechaEntregaCFE` | Fecha de entrega de los materiales a CFE |
-| `fechaRegistro` | Fecha actual del registro |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
 
 
 json de ejemplo:
@@ -809,8 +810,7 @@ json de ejemplo:
   "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
   "mD5": "",
   "estatus": "VIGENTE",
-  "fechaEntregaCFE": "2023-10-05T19:56:57.059Z",
-  "fechaRegistro": "2023-01-30T19:56:57.059Z"
+  "fechaEntregaCFE": "2023-10-05T19:56:57.059Z"
 }
 ```
 
@@ -830,6 +830,45 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ContratosCFE
 _Resultado_:
 
 Status: 200 - Listado con todos los contratos de CFE registrados, correspondientes a la sesión del usuario
+
+## Actualizar contrato de CFE
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ContratosCFE
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador del contrato de CFE a actualizar |
+| `noContrato` | Número de contrato de CFE |
+| `areaDestinoCFE` | Nombre del área destino de los equipos |
+| `urlArchivo` | Ubicación del fabricante donde se ubica el archivo del contrato de CFE |
+| `mD5` | Hash del archivo del contrato *(no ingresar)* |
+| `estatus` | Los estatus pueden ser: **VIGENTE/VENCIDO** |
+| `fechaEntregaCFE` | Fecha de entrega de los materiales a CFE |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+
+json de ejemplo:
+```json
+{
+    "id": "662ff004424cb5b952c85e40",
+    "noContrato": "CFE-GRP-1050-2024",
+    "areaDestinoCFE": "Almacén Bajío",
+    "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+    "mD5": "",
+    "estatus": "VIGENTE",
+    "fechaEntregaCFE": "2023-10-05T19:56:57.059Z"
+}
+```
+
+_Resultado_:
+
+Status: 200 - El sistema actualizará la información del contrato de CFE, correspondiente a la sesión del usuario.
 
 ## Crear expediente de pruebas
 
