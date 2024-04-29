@@ -15,6 +15,7 @@
 - [Consultar las pruebas](#consultar-las-pruebas)
 - [Registrar los valores de referencia](#registrar-los-valores-de-referencia)
 - [Consultar los valores de referencia](#consultar-los-valores-de-referencia)
+- [Actualizar los valores de referencia](#actualizar-los-valores-de-referencia)
 - [Registrar producto](#registrar-producto)
 - [Consultar productos](#consultar-productos)
 - [Actualizar producto](#actualizar-producto)
@@ -350,47 +351,46 @@ json de ejemplo:
 {
   "id": "string",
   "producto": {
-    "id": "",
-    "codigoFabricante": "RP08976",
-    "descripcion": "TRANSFORMADOR PEDESTAL",
-    "descripcionCorta": "TRAFO15KV",
-    "tipoFabricacion": "ARTESANAL",
+    "id": "62c5c5dbf2479888d0233f23",
+    "codigoFabricante": "PROD-001-2024",
+    "descripcion": "PRODUCTO P001",
+    "descripcionCorta": "CFE 456464646",
+    "tipoFabricacion": "SERIE",
     "unidad": "PIEZA",
     "norma": {
-      "id": "",
-      "clave": "PK3000",
-      "nombre": "TRANSFORMADORES DE DISTRIBUCION TIPO PEDESTAL",
-      "edicion": "2018",
+      "id": "62c5c527f2479888d0233f22",
+      "clave": "CFE K0000-25",
+      "nombre": "NORMA CFE K0000-25",
+      "edicion": "2014",
       "estatus": "VIGENTE",
       "esCFE": true,
-      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+      "fechaRegistro": "2022-07-06T17:23:51.971Z"
     },
     "prototipo": {
-      "id": "",
-      "numero": "E101-2022",
-      "fechaEmision": "2021-01-20T19:57:12.635Z",
-      "fechaVencimiento": "2023-01-20T19:57:12.635Z",
-      "urlArchivo": "C:/tmp/Ejemplo.pdf",
+      "id": "62c5c45bf2479888d0233f21",
+      "numero": "K3100/2300-90",
+      "fechaEmision": "2022-07-06T17:18:33.522Z",
+      "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+      "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
       "mD5": "",
       "estatus": "VIGENTE",
-      "fechaRegistro": "2023-01-24T19:57:12.635Z"
+      "fechaRegistro": "2022-07-06T17:22:01.61Z"
     },
     "estatus": "ACTIVO",
     "fechaRegistro": "2023-01-24T19:57:12.635Z"
   },
-  "prueba": {
-    "id": "",
-    "nombre": "IMPULSO",
+  "prueba":{
+    "id": "62ead53891372bb1f219d0e5",
+    "nombre": "PRUEBA VISUAL Y DIMENSIONAL",
     "estatus": "ACTIVA",
-    "tipoPrueba": "RUTINA",
+    "tipoPrueba": "ACEPTACION",
     "tipoResultado": "PASA/NO-PASA",
-    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+    "fechaRegistro": "2022-08-03T20:06:16.878Z"
   },
-  "valor": 12,
-  "valor2": 15,
+  "valor": 15,
+  "valor2": 20,
   "unidad": "KV",
-  "comparacion": "INTERVALO",
-  "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  "comparacion": "RANGO"
 }
 ```
 _Resultado_:
@@ -410,6 +410,80 @@ _Resultado_:
 
 Status: 200 - Listado con todos los valores de referencia, correspondientes a la sesión del usuario
 
+## Actualizar los valores de referencia
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Soporte/ValorReferencia
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `id` | Identificador del valor de referencia a modificar |
+| `producto` | [Json del producto](#registrar-producto)|
+| `prototipo` | [Json del prototipo](#registrar-prototipo) |
+| `prueba` | [Json de la prueba](#registrar-prueba) |
+| `valor` | Rango inicial (mínimo) *solo se utiliza cuando el tipo de "comparacion" sea por "RANGO"* |
+| `valor2` | Rango final (máximo) *solo se utiliza cuando el tipo de "comparacion" sea por "RANGO"*  |
+| `unidad` | Unidad para medir el valor de referencia |
+| `comparacion` | Comparativa de los valores de referencia pueden ser: **VALOR_MINIMO/VALOR_MAXIMO/RANGO** |
+| `fechaRegistro` | Fecha actual en que se registra la información *(no ingresar)* |
+
+> Cuando en la prueba, el valor de "tipoResultado" es **PASA/NO-PASA** NO se utilizan los valores de referencia 
+
+json de ejemplo:
+```json
+{
+  "id": "string",
+  "producto": {
+    "id": "62c5c5dbf2479888d0233f23",
+    "codigoFabricante": "PROD-001-2024",
+    "descripcion": "PRODUCTO P001",
+    "descripcionCorta": "CFE 456464646",
+    "tipoFabricacion": "SERIE",
+    "unidad": "PIEZA",
+    "norma": {
+      "id": "62c5c527f2479888d0233f22",
+      "clave": "CFE K0000-25",
+      "nombre": "NORMA CFE K0000-25",
+      "edicion": "2014",
+      "estatus": "VIGENTE",
+      "esCFE": true,
+      "fechaRegistro": "2022-07-06T17:23:51.971Z"
+    },
+    "prototipo": {
+      "id": "62c5c45bf2479888d0233f21",
+      "numero": "K3100/2300-90",
+      "fechaEmision": "2022-07-06T17:18:33.522Z",
+      "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+      "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaRegistro": "2022-07-06T17:22:01.61Z"
+    },
+    "estatus": "ACTIVO",
+    "fechaRegistro": "2023-01-24T19:57:12.635Z"
+  },
+  "prueba":{
+    "id": "62ead53891372bb1f219d0e5",
+    "nombre": "PRUEBA VISUAL Y DIMENSIONAL",
+    "estatus": "ACTIVA",
+    "tipoPrueba": "ACEPTACION",
+    "tipoResultado": "PASA/NO-PASA",
+    "fechaRegistro": "2022-08-03T20:06:16.878Z"
+  },
+  "valor": 15,
+  "valor2": 20,
+  "unidad": "KV",
+  "comparacion": "RANGO"
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema actualizará el valor de referencia, correspondiente a la sesión del usuario.
 
 ## Registrar producto
 
