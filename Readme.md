@@ -679,7 +679,7 @@ _Comentarios_:
 
 | Propiedad | Descripción |
 | --- | --- |
-| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `id` | Identificador del prototipo a actualizar |
 | `numero` | Número de identificación del prototipo |
 | `fechaEmision` | Fecha en que se emitió el prototipo |
 | `fechaVencimiento` | Fecha en que se vence el prototipo |
