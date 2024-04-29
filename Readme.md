@@ -164,7 +164,7 @@ _Comentarios_:
 
 | Propiedad | Descripción |
 | --- | --- |
-| `id` | Identificador que se genera automáticamente  *(no ingresar)* |
+| `id` | Identificador del instrumento de medición a actualizar |
 | `nombre` | Nombre del equipo de medición|
 | `numeroSerie` | Número de serie del equipo de medición |
 | `fechaCalibracion` | Fecha de calibración del equipo |
