@@ -29,6 +29,7 @@
 - [Actualizar contrato de CFE](#actualizar-contrato-de-cfe)
 - [Crear expediente de pruebas](#crear-expediente-de-pruebas)
 - [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
+- [Orden de fabricación](#orden-de-fabricacion)
 - [Prácticas](practicas.md)
 - ✨Magic ✨
 
@@ -884,7 +885,8 @@ _Comentarios_:
 | --- | --- |
 | `id` | Identificador que se genera automáticamente  *(no ingresar)* |
 | `claveExpediente` | Clave que identifica el expediente de pruebas |
-| `muestrasExpediente` | Lista de [muestras] del expediente(#registrar-muestra) |
+| `muestrasExpediente` | Lista de [muestras](#agregar-muestra-al-expediente-de-pruebas) del expediente|
+| `ordenFabricacion` | Información de la [orden de fabricación](#orden-de-fabricacion) |
 
 json de ejemplo:
 ```json
@@ -949,7 +951,7 @@ json de ejemplo:
 
 _Resultado_:
 
-Status: 200 - El sistema almacenará la información del expediente de pruebas, correspondiente a la sesión del usuario.
+Status: 200 - El sistema regresa la información del expediente de pruebas, correspondiente a la sesión del usuario.
 
 ## Agregar muestra al expediente de pruebas
 
@@ -965,8 +967,9 @@ _Comentarios_:
 
 | Propiedad | Descripción |
 | --- | --- |
-| `noContrato` | Número de contrato de CFE |
-
+| `identificador` | Identificador de la muestra |
+| `estatus` | Estatus de la muestra **PENDIENTE_PRUEBAS / EN_PRUEBAS / PRUEBAS_TERMINADAS / BAJA** |
+| `fechaRegistro` | Fecha actual del registro |
 
 json de ejemplo:
 ```json
@@ -977,4 +980,70 @@ json de ejemplo:
 
 _Resultado_:
 
-Status: 200 - El sistema almacenará la información de la muestra en el expediente, correspondiente a la sesión del usuario.
+Status: 200 - El sistema almacenará la información de la  en el expediente, correspondiente a la sesión del usuario.
+
+## Orden de fabricación
+
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `claveOrdenFabricacion` | Clave de fabricación como la identifica el fabricante |
+| `producto` | Información del [producto](#agregar-producto) |
+| `tipoContrato` | tipo de contrato **CFE/PARTICULAR**|
+| `contratoCFE` | Información del [contrato](#registrar-contrato) |
+| `partidaContrato` | Número de partida del contrato |
+| `cantidad` | Cantidad de la orden de fabricación |
+| `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
+
+json de ejemplo:
+```json
+{
+  "claveOrdenFabricacion": "OT-8976-ABRIL-2024",
+    "producto": {
+      "id": "62c5c5dbf2479888d0233f23",
+    "codigoFabricante": "PROD-001-2024",
+    "descripcion": "PRODUCTO P001",
+    "descripcionCorta": "CFE 456464646",
+    "tipoFabricacion": "SERIE",
+    "unidad": "PIEZA",
+    "norma": {
+      "id": "62c5c527f2479888d0233f22",
+      "clave": "CFE K0000-25",
+      "nombre": "NORMA CFE K0000-25",
+      "edicion": "2014",
+      "estatus": "VIGENTE",
+      "esCFE": true,
+      "fechaRegistro": "2022-07-06T17:23:51.971Z"
+      },
+      "prototipo": {
+        "id": "62c5c45bf2479888d0233f21",
+      "numero": "K3100/2300-90",
+      "fechaEmision": "2022-07-06T17:18:33.522Z",
+      "fechaVencimiento": "2025-07-06T17:18:33.522Z",
+      "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+      "mD5": "",
+      "estatus": "VIGENTE",
+      "fechaRegistro": "2022-07-06T17:22:01.61Z"
+      },
+      "estatus": "ACTIVO",
+      "fechaRegistro": "2024-04-30T18:44:48.449Z"
+    },
+    "tipoContrato": "CFE",
+    "contratoCFE": {
+       "id": "63d8216bcb5cc767b6f82300",
+    "noContrato": "CFE-GRP-0587",
+    "areaDestinoCFE": "Almacén Bajío",
+    "urlArchivo": "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+    "mD5": "e5db6e4b844c398f6e233473dc524b8d",
+    "estatus": "VIGENTE",
+    "fechaEntregaCFE": "2023-10-05T19:56:57.059Z",
+    "fechaRegistro": "2023-01-30T19:58:22.919Z"
+    },
+    "partidaContrato": "PARTIDA2",
+    "cantidad": 10
+}
+```
+_Resultado_:
+
+Status: 200 - El sistema almacenará la información de la  en el expediente, correspondiente a la sesión del usuario.
