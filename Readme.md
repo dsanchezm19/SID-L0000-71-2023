@@ -29,7 +29,7 @@
 - [Actualizar contrato de CFE](#actualizar-contrato-de-cfe)
 - [Crear expediente de pruebas](#crear-expediente-de-pruebas)
 - [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
-- [Orden de fabricación](#orden-de-fabricacion)
+- [Orden de fabricación](#orden-de-fabricación)
 - [Prácticas](practicas.md)
 - ✨Magic ✨
 
@@ -886,7 +886,7 @@ _Comentarios_:
 | `id` | Identificador que se genera automáticamente  *(no ingresar)* |
 | `claveExpediente` | Clave que identifica el expediente de pruebas |
 | `muestrasExpediente` | Lista de [muestras](#agregar-muestra-al-expediente-de-pruebas) del expediente|
-| `ordenFabricacion` | Información de la [orden de fabricación](#orden-de-fabricacion) |
+| `ordenFabricacion` | Información de la [orden de fabricación](#orden-de-fabricación) |
 
 json de ejemplo:
 ```json
@@ -1044,6 +1044,4 @@ json de ejemplo:
     "cantidad": 10
 }
 ```
-_Resultado_:
 
-Status: 200 - El sistema almacenará la información de la  en el expediente, correspondiente a la sesión del usuario.
