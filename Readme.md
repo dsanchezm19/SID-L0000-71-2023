@@ -989,9 +989,9 @@ _Comentarios_:
 | Propiedad | Descripción |
 | --- | --- |
 | `claveOrdenFabricacion` | Clave de fabricación como la identifica el fabricante |
-| `producto` | Información del [producto](#agregar-producto) |
+| `producto` | Información del [producto](#registrar-producto) |
 | `tipoContrato` | tipo de contrato **CFE/PARTICULAR**|
-| `contratoCFE` | Información del [contrato](#registrar-contrato) |
+| `contratoCFE` | Información del [contrato](#registrar-contrato-de-cfe) |
 | `partidaContrato` | Número de partida del contrato |
 | `cantidad` | Cantidad de la orden de fabricación |
 | `fechaRegistro` | Fecha actual del registro *(no ingresar)* |
