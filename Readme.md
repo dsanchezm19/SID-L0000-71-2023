@@ -989,6 +989,7 @@ _Comentarios_:
 | Propiedad | Descripción |
 | --- | --- |
 | `claveOrdenFabricacion` | Clave de fabricación como la identifica el fabricante |
+| `loteFabricacion` | Lote de fabricación de la orden |
 | `producto` | Información del [producto](#registrar-producto) |
 | `tipoContrato` | tipo de contrato **CFE/PARTICULAR**|
 | `contratoCFE` | Información del [contrato](#registrar-contrato-de-cfe) |
