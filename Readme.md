@@ -1001,6 +1001,7 @@ json de ejemplo:
 ```json
 {
   "claveOrdenFabricacion": "OT-8976-ABRIL-2024",
+  "loteFabricacion":"LOTE125478-98UYTR",
     "producto": {
       "id": "62c5c5dbf2479888d0233f23",
     "codigoFabricante": "PROD-001-2024",
