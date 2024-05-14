@@ -963,7 +963,8 @@ https://lapem.cfe.gob.mx/sid_capacitacion/Inspeccion/AgregaMuestraExpediente/{Ex
 ```
 _Comentarios_:
 
-> `{Expediente}` | Corresponde a la clave que identifica al expediente donde se agregará la muestra 
+> `{Expediente}` | Corresponde a la clave que identifica al expediente donde se agregará la muestra
+
 
 | Propiedad | Descripción |
 | --- | --- |
@@ -974,13 +975,15 @@ _Comentarios_:
 json de ejemplo:
 ```json
 {
-  
+  "identificador": "TRANSFORMADOR MONOFASICO",
+  "estatus": "PENDIENTE_PRUEBAS"
 }
+
 ```
 
 _Resultado_:
 
-Status: 200 - El sistema almacenará la información de la  en el expediente, correspondiente a la sesión del usuario.
+Status: 200 - El sistema guarda la muestra en el expediente y regresa la información del expediente, correspondiente a la sesión del usuario.
 
 ## Orden de fabricación
 
