@@ -29,6 +29,7 @@
 - [Actualizar contrato de CFE](#actualizar-contrato-de-cfe)
 - [Crear expediente de pruebas](#crear-expediente-de-pruebas)
 - [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
+- [Quitar muestra al expediente de pruebas](#quitar-muestra-al-expediente-de-pruebas)
 - [Orden de fabricación](#orden-de-fabricación)
 - [Prácticas](practicas.md)
 - ✨Magic ✨
@@ -984,6 +985,27 @@ json de ejemplo:
 _Resultado_:
 
 Status: 200 - El sistema guarda la muestra en el expediente y regresa la información del expediente, correspondiente a la sesión del usuario.
+
+
+## Quitar muestra al expediente de pruebas
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Inspeccion/QuitarMuestraExpediente/{Expediente}/{muestra}
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `Expediente` | Clave del expediente de pruebas |
+| `muestra` | Identificador de la muestra que se eliminará del expediente |
+
+_Resultado_:
+
+Status: 200 - El sistema guarda la muestra en el expediente y regresa la información del expediente, correspondiente a la sesión del usuario.
+Status: 500 - Si ocurrió un error al quitar la muestra del expediente.
 
 ## Orden de fabricación
 
