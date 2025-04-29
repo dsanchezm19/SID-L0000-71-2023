@@ -1004,7 +1004,8 @@ _Comentarios_:
 
 _Resultado_:
 
-Status: 200 - El sistema guarda la muestra en el expediente y regresa la información del expediente, correspondiente a la sesión del usuario.
+Status: 200 - El sistema quita la muestra en el expediente (marca la muestra del expediente con estatus BAJA) y regresa la información del expediente, correspondiente a la sesión del usuario.
+
 Status: 500 - Si ocurrió un error al quitar la muestra del expediente.
 
 ## Orden de fabricación
