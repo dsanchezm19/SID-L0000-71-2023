@@ -30,6 +30,7 @@
 - [Crear expediente de pruebas](#crear-expediente-de-pruebas)
 - [Agregar muestra al expediente de pruebas](#agregar-muestra-al-expediente-de-pruebas)
 - [Quitar muestra al expediente de pruebas](#quitar-muestra-al-expediente-de-pruebas)
+- [Agregar resultado de prueba al expediente](#agregar-resultado-de-prueba-al-expediente)
 - [Orden de fabricación](#orden-de-fabricación)
 - [Prácticas](practicas.md)
 - ✨Magic ✨
@@ -1007,6 +1008,103 @@ _Resultado_:
 Status: 200 - El sistema quita la muestra en el expediente (marca la muestra del expediente con estatus BAJA) y regresa la información del expediente, correspondiente a la sesión del usuario.
 
 Status: 500 - Si ocurrió un error al quitar la muestra del expediente.
+
+## Agregar resultado de prueba al expediente
+
+Método http: PUT
+
+Endpoint: 
+```
+https://lapem.cfe.gob.mx/sid_capacitacion/Inspeccion/AgregaResultadoPrueba/{Expediente}
+```
+_Comentarios_:
+
+| Propiedad | Descripción |
+| --- | --- |
+| `Expediente` | Clave del expediente de pruebas |
+
+json de ejemplo:
+```json
+{
+  "id": "",
+  "muestra": {
+    "identificador": "TRANSF-PEDESTAL1",
+    "estatus": "PRUEBAS_TERMINADAS",
+    "fechaRegistro": "2024-04-30T18:44:48.448Z"
+  },
+  "valorReferencia": {
+    "id": "",
+    "producto": {
+      "id": "62c5c5dbf2479888d0233f23",
+      "codigoFabricante": "PROD-001-2024",
+      "descripcion": "PRODUCTO P001",
+      "descripcionCorta": "string",
+      "tipoFabricacion": "SERIE",
+      "unidad": "PIEZA",
+      "norma": {
+      "id" : "62c5c527f2479888d0233f22",
+      "clave" : "CFE K0000-25",
+      "nombre" : "NORMA CFE K0000-25",
+      "edicion" : "2014",
+      "estatus" : "VIGENTE",
+      "esCFE" : true,
+      "fechaRegistro" : "2022-07-06T12:23:51.971"
+      },
+      "prototipo": {
+        "id" : "62c5c45bf2479888d0233f21",
+	"numero" : "K3100/2300-90",
+	"fechaEmision" : "2022-07-06T12:18:33.522",
+	"fechaVencimiento" : "2025-07-06T12:18:33.522",
+	"urlArchivo" : "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+	"mD5" : "",
+	"estatus" : "VIGENTE",
+	"fechaRegistro" : "2022-07-06T12:22:01.610"
+      },
+      "estatus" : "ACTIVO",
+     "fechaRegistro" : "2023-01-24T13:57:12.635"
+    },
+    "prueba": {
+      "id" : "62ead53891372bb1f219d0e5",
+      "nombre": "PRUEBA VISUAL Y DIMENSIONAL",
+      "estatus": "ACTIVA",
+      "tipoPrueba": "ACEPTACION",
+      "tipoResultado": "PASA/NO-PASA",
+      "fechaRegistro":"2022-08-03T15:06:16.878"
+    },
+    "valor" : "20",
+    "valor2" : "25",
+    "unidad" : "KV",
+    "comparacion" : "RANGO",
+    "fechaRegistro" : "2024-04-29T11:58:29.194"
+  },
+  "fechaPrueba": "2024-05-14T18:05:56.198Z",
+  "operadorPrueba": "FABRICIO GONZALEZ GONZALEZ",
+  "instrumentoMedicion": {
+    "id" : "62a8ef94240a38411ae9b068",
+    "nombre" : "instrumento",
+    "numeroSerie" : "456464680809E",
+    "fechaCalibracion" : "2022-06-14T15:27:32.099",
+    "fechaVencimientoCalibracion" : "2022-06-14T15:27:32.099",
+    "urlArchivo" : "http://10.44.6.51/CotizacionesAPI/api/cotizacion/cotizacionArchPdf/cot/pdf/44004",
+    "mD5" : "1144a2f122723de0a7884b3502a107f3",
+    "estatus" : "ACTIVO",
+    "fechaRegistro" : "2022-08-04T09:28:46.473"
+  },
+  "valorMedido": 22,
+  "resultado": "SATISFACTORIO",
+  "numeroIntento": 1,
+  "fechaRegistro": "2024-05-14T18:05:56.198Z"
+}
+
+```
+
+_Resultado_:
+
+Status: 200 - El sistema agrega el resultado de la prueba y regresa la información del expediente, correspondiente a la sesión del usuario.
+
+Status: 500 - Si ocurrió un error al agregar resultado de prueba.
+
+
 
 ## Orden de fabricación
 
