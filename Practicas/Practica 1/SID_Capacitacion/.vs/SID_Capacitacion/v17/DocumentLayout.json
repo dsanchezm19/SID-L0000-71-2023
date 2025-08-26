@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A1C562BE-EC48-4C3E-B113-1341057ED30F}|ApiClientTest\\ApiClientTest.csproj|c:\\desarrollo\\sid_capacitacion\\documentacion\\practica_1\\sid_capacitacion\\apiclienttest\\estadosidtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1C562BE-EC48-4C3E-B113-1341057ED30F}|ApiClientTest\\ApiClientTest.csproj|solutionrelative:apiclienttest\\estadosidtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A200EC-E715-4BF3-9448-6B4811707AAD}|ApiClientLibrary\\ApiClientLibrary.csproj|c:\\desarrollo\\sid_capacitacion\\documentacion\\practica_1\\sid_capacitacion\\apiclientlibrary\\services\\f1_configuracioninicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A200EC-E715-4BF3-9448-6B4811707AAD}|ApiClientLibrary\\ApiClientLibrary.csproj|solutionrelative:apiclientlibrary\\services\\f1_configuracioninicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A200EC-E715-4BF3-9448-6B4811707AAD}|ApiClientLibrary\\ApiClientLibrary.csproj|c:\\desarrollo\\sid_capacitacion\\documentacion\\practica_1\\sid_capacitacion\\apiclientlibrary\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D0A200EC-E715-4BF3-9448-6B4811707AAD}|ApiClientLibrary\\ApiClientLibrary.csproj|solutionrelative:apiclientlibrary\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EstadoSIDTests.cs",
+              "DocumentMoniker": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientTest\\EstadoSIDTests.cs",
+              "RelativeDocumentMoniker": "ApiClientTest\\EstadoSIDTests.cs",
+              "ToolTip": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientTest\\EstadoSIDTests.cs",
+              "RelativeToolTip": "ApiClientTest\\EstadoSIDTests.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAIwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T00:12:00.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "F1_ConfiguracionInicial.cs",
+              "DocumentMoniker": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientLibrary\\Services\\F1_ConfiguracionInicial.cs",
+              "RelativeDocumentMoniker": "ApiClientLibrary\\Services\\F1_ConfiguracionInicial.cs",
+              "ToolTip": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientLibrary\\Services\\F1_ConfiguracionInicial.cs",
+              "RelativeToolTip": "ApiClientLibrary\\Services\\F1_ConfiguracionInicial.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwDIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T23:47:47.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientLibrary\\appsettings.json",
+              "RelativeDocumentMoniker": "ApiClientLibrary\\appsettings.json",
+              "ToolTip": "C:\\Desarrollo\\SID_capacitacion\\Documentacion\\Practica_1\\SID_Capacitacion\\ApiClientLibrary\\appsettings.json",
+              "RelativeToolTip": "ApiClientLibrary\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABRAgAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-21T23:40:50.909Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

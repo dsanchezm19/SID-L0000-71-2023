@@ -1,0 +1,13 @@
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\bin\Debug\net8.0\appsettings.json
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\bin\Debug\net8.0\ApiClientLibrary.deps.json
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\bin\Debug\net8.0\ApiClientLibrary.dll
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\bin\Debug\net8.0\ApiClientLibrary.pdb
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.csproj.AssemblyReference.cache
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.AssemblyInfoInputs.cache
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.AssemblyInfo.cs
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.csproj.CoreCompileInputs.cache
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.dll
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\refint\ApiClientLibrary.dll
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ApiClientLibrary.pdb
+C:\Desarrollo\SID_capacitacion\Practica_1\SID_Capacitacion\ApiClientLibrary\obj\Debug\net8.0\ref\ApiClientLibrary.dll
