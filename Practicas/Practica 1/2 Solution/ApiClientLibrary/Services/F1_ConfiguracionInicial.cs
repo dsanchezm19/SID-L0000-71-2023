@@ -41,27 +41,26 @@ namespace ApiClientLibrary.Services
                 new AuthenticationHeaderValue("Bearer", token);
         }
 
+        private async Task<HttpResponseMessage> PostAsync(EstadoSIDDTO estado)
+        {
+            var json = JsonSerializer.Serialize(estado);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("EstadoSID", content);
+            return response;
+        }
+
         public async Task<HttpResponseMessage> RegistrarEstadoSID()
         {
             var estado = new EstadoSIDDTO { Estado = "EN_PRUEBAS" };
-            var json = JsonSerializer.Serialize(estado);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("EstadoSID", content);
-
+            HttpResponseMessage response = await PostAsync(estado);
             return response;
         }
 
-
-        public async Task<HttpResponseMessage> RegistrarEstadoSID_invalido()
+        public async Task<HttpResponseMessage> RegistrarEstadoSID_DatosInvalidos()
         {
             var estado = new EstadoSIDDTO { Estado = "" };
-            var json = JsonSerializer.Serialize(estado);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("EstadoSID", content);
-
+            HttpResponseMessage response = await PostAsync(estado);
             return response;
-        }
+        }                
     }
 }
