@@ -43,12 +43,7 @@ namespace ApiClientLibrary.Services
 
         public async Task<HttpResponseMessage> RegistrarEstadoSID(EstadoSIDDTO estado)
         {
-            var json = JsonSerializer.Serialize(estado);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("EstadoSID", content);
-
-            return response;
+            throw new NotImplementedException();
         }
     }
 }

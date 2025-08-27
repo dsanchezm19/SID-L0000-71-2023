@@ -6,20 +6,17 @@ namespace ApiClientTest
 {
     public class EstadoSIDTests
     {
-        private readonly F1_ConfiguracionInicial _apiClient;
+        private readonly F1_ConfiguracionInicial _servicio;
         public EstadoSIDTests()
         {
-            _apiClient = new F1_ConfiguracionInicial();
+            _servicio = new F1_ConfiguracionInicial();
         }
 
         [Fact(DisplayName = "Registrar Estado SID - Caso exitoso")]
         public async Task RegistrarEstadoSID_Exitoso()
         {
-            // Arrange
-            var estado = new EstadoSIDDTO {Estado = "EN_PRUEBAS"};
-
             // Act
-            var response = await _apiClient.RegistrarEstadoSID(estado);
+            var response = await _servicio.RegistrarEstadoSID();
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -35,7 +32,7 @@ namespace ApiClientTest
             // Forzamos un token inválido
             var apiClient = new F1_ConfiguracionInicial();
             apiClient.SetToken("token_invalido");
-            var response = await apiClient.RegistrarEstadoSID(estado);
+            var response = await apiClient.RegistrarEstadoSID();
 
             // Assert
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -47,7 +44,7 @@ namespace ApiClientTest
             // Arrange
             var estado = new EstadoSIDDTO {Estado = ""};
             // Act
-            var response = await _apiClient.RegistrarEstadoSID(estado);
+            var response = await _servicio.RegistrarEstadoSID_invalido();
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
@@ -59,10 +56,10 @@ namespace ApiClientTest
             var estado = new EstadoSIDDTO { Estado = "EN_PRUEBAS" };
             // Creamos un token expirado
             var expiredToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDQVJMT1MgQUxCRVJUTyBTT0xJUyBNQURSSUdBTCIsImZ1bGxOYW1lIjoiQ0FSTE9TIEFMQkVSVE8gU09MSVMgTUFEUklHQUwiLCJ1c2VybmFtZSI6IjlBSkFYIiwicmZjIjoiQ0ZFMzcwODE0UUkwIiwiZW1wcmVzYSI6IkNPTUlTSU9OIEZFREVSQUwgREUgRUxFQ1RSSUNJREFEIiwiSWRFbXByZXNhIjoiMSIsInJvbGUiOiJVc2VyX1NJRCIsImp0aSI6IjkzMjE5YWNkLWY3NDEtNDdkMS04ODJiLTc1M2MyNzQ1NzQ2OSIsIm5iZiI6MTc1NTgxOTA1MCwiZXhwIjoxNzU1OTA1NDUwLCJpYXQiOjE3NTU4MTkwNTAsImlzcyI6Imh0dHBzOi8vbGFwZW0uY2ZlLmdvYi5teC9zaWQvIiwiYXVkIjoiaHR0cHM6Ly9sYXBlbS5jZmUuZ29iLm14L3NpZC8ifQ.AQUhP4CP-UcxoBk1VK6J6-fuChcWbEqX7fkRZ3l-bII";
-            _apiClient.SetToken(expiredToken);
+            _servicio.SetToken(expiredToken);
 
             // Act
-            var response = await _apiClient.RegistrarEstadoSID(estado);
+            var response = await _servicio.RegistrarEstadoSID();
 
             // Obtenemos el encabezado
             var authHeader = response.Headers.WwwAuthenticate.FirstOrDefault();
