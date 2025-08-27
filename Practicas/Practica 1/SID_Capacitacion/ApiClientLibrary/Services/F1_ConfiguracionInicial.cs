@@ -9,28 +9,9 @@ namespace ApiClientLibrary.Services
     public class F1_ConfiguracionInicial
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;        
+        private readonly IConfiguration _configuration;
+        private readonly string _basePath = "F1_ConfiguracionInicial/";
         public F1_ConfiguracionInicial()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-            _configuration = builder.Build();
-
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(_configuration["ApiSettings:BaseUrl"])
-            };
-
-            var token = _configuration["ApiSettings:Token"];
-            if (!string.IsNullOrEmpty(token))
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-        }
-
-        public F1_ConfiguracionInicial(string token)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
@@ -40,16 +21,25 @@ namespace ApiClientLibrary.Services
 
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri(_configuration["ApiSettings:BaseUrl"])
+                BaseAddress = new Uri($"{_configuration["ApiSettings:BaseUrl"]}{_basePath}")
             };
 
+            var token = _configuration["ApiSettings:Token"];
             if (!string.IsNullOrEmpty(token))
             {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
             }
-
         }
 
+        /// <summary>
+        /// Permite cambiar manualmente el token de autorización (ej. para pruebas).
+        /// </summary>
+        public void SetToken(string token)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+        }
 
         public async Task<HttpResponseMessage> RegistrarEstadoSID(EstadoSIDDTO estado)
         {
