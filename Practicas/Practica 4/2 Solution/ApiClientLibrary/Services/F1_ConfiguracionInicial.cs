@@ -1,5 +1,6 @@
 ﻿using ApiClientLibrary.Models;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -40,27 +41,36 @@ namespace ApiClientLibrary.Services
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
         }
-
-        private async Task<HttpResponseMessage> PostAsync(EstadoSIDDTO estado)
+        private async Task<HttpResponseMessage> PostAsync<T>(string url, T dto)
         {
-            var json = JsonSerializer.Serialize(estado);
+            var json = JsonSerializer.Serialize(dto);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("EstadoSID", content);
+            var response = await _httpClient.PostAsync(url, content);
             return response;
         }
 
+        #region EstadoSID
         public async Task<HttpResponseMessage> RegistrarEstadoSID()
         {
             var estado = new EstadoSIDDTO { Estado = "EN_PRUEBAS" };
-            HttpResponseMessage response = await PostAsync(estado);
+            HttpResponseMessage response = await PostAsync("EstadoSID", estado);
             return response;
         }
 
         public async Task<HttpResponseMessage> RegistrarEstadoSID_DatosInvalidos()
         {
             var estado = new EstadoSIDDTO { Estado = "" };
-            HttpResponseMessage response = await PostAsync(estado);
+            HttpResponseMessage response = await PostAsync("EstadoSID", estado);
             return response;
-        }                
+        }
+        #endregion
+
+
+        #region OtrasPruebasyDocumentos
+        //public async Tast<HttpRequestMessage> RegistrarOtrasPruebas() {
+
+
+        //}
+        #endregion
     }
 }
