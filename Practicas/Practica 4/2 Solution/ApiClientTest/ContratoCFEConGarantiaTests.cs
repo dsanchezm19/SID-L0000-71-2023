@@ -35,5 +35,26 @@ namespace ApiClientTest
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
+
+        [Fact(DisplayName = "Actualizar contrato CFE con garantia - Caso exitoso")]
+        public async Task ActualizarContratoCFEConGarantia_Exitoso() {
+            // Act
+            var response = await _servicio.ActualizarContratoCFEConGarantia();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Contains("actualizado correctamente", responseBody);
+        }
+
+        [Fact(DisplayName = "Actualizar contrato CFE con garantia - Datos inválidos")]
+        public async Task ActualizarContratoCFEConGarantia_DatosInvalidos()
+        {
+            // Act
+            var response = await _servicio.ActualizarContratoCFEConGarantia_DatosInvalidos();
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
     }
 }
