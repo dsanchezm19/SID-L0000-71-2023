@@ -105,7 +105,7 @@ namespace ApiClientLibrary.Services
             // Creamos la prueba
             var nuevaPrueba = new
             {
-                id = Guid.NewGuid().ToString(),
+                id = "",
                 nombre = "CID",
                 estatus = "ACTIVA",
                 tipoPrueba = "ACEPTACION",
@@ -124,17 +124,162 @@ namespace ApiClientLibrary.Services
             return response;
         }
 
+        /// <summary>
+        /// Actualizar una prueba registrado en el SID
+        /// </summary>
+        /// <returns>prueba</returns>
+        public async Task<HttpResponseMessage> ActualizarPruebasAsync()
+        { 
+            string idPrueba = "68b09fac663d1c38a0647b28";
+            var pruebas = await ObtenerPruebasAsync();
 
+            if (pruebas == null || pruebas.Count == 0)
+                throw new Exception("No hay pruebas disponibles para actualizar.");
+
+            var prueba = pruebas.FirstOrDefault(p => p.Id == idPrueba);
+
+            if (prueba == null)
+                throw new Exception($"No se encontró producto con Id {idPrueba}");
+            
+            prueba.Nombre = "Resistencia Óhmica 2 - ACTUALIZADA";
+            prueba.Estatus = "INACTIVA";
+
+            var updateBody = new
+            {
+                id = prueba.Id,
+                nombre = prueba.Nombre,
+                estatus = prueba.Estatus,
+                tipoPrueba = prueba.TipoPrueba,
+                tipoResultado = prueba.TipoResultado,
+                fechaRegistro = prueba.FechaRegistro
+            };
+
+            // Serializar la prueba
+            var json = JsonSerializer.Serialize(prueba, _jsonOptions);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync("Prueba", content);
+
+            return response;
+        }
+
+
+        // --------------------------------------------------------------------------
+        // Métodos para valores de referencia SID
+        // --------------------------------------------------------------------------
+
+        /// <summary>
+        /// Obtener listado de valores de referencia de pruebas para SID
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ValorReferenciaDTO>?> ObtenerValoresReferenciaPruebasAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("ValorReferencia");
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync();
+                var valores = JsonSerializer.Deserialize<List<ValorReferenciaDTO>>(json, _jsonOptions);
+                return valores;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error en la conexión: {ex.Message}");
+                return null;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Error al deserializar la respuesta: {ex.Message}");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Agregar un nuevo valor de referencia 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> AgregarValorReferenciaAsync()
+        {
+            string idProducto = "68a66f9cdf56ae9af3e6db53";
+            string idPrueba = "68b09fac663d1c38a0647b28";
+
+            var valoresExistentes = await ObtenerValoresReferenciaPruebasAsync();
+
+            // Comprobamos si ya existe un valor para ese producto y prueba
+            if (valoresExistentes != null && valoresExistentes.Any(v => v.IdProducto == idProducto && v.IdPrueba == idPrueba))
+                throw new Exception($"Ya existe un valor de referencia para el producto {idProducto} y la prueba {idPrueba}");
+
+            // Creamos el objeto que se enviará al endpoint
+            var nuevoValor = new ValorReferenciaDTO
+            {
+                Id = "",
+                IdProducto = idProducto,
+                IdPrueba = idPrueba,
+                Valor = 10,
+                Valor2 = 20,
+                Unidad = "Ohm",
+                Comparacion = "Mayor",
+                FechaRegistro = DateTime.Now
+            };
+
+            var json = JsonSerializer.Serialize(nuevoValor, _jsonOptions);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Llamada POST al endpoint
+            var response = await _httpClient.PostAsync("ValorReferencia", content);
+
+            return response;
+
+        }
+
+        /// <summary>
+        /// Actualiza el valor de referencia de una prueba para un producto en el SID
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> ActualizarValorReferenciaAsync()
+        {
+            string idValor = "68b0e3c0f14a6239975ad50d"; // ID del valor a actualizar
+
+            var valores = await ObtenerValoresReferenciaPruebasAsync();
+
+            if (valores == null || valores.Count == 0)
+                throw new Exception("No hay valores de referencia disponibles para actualizar.");
+            var valor = valores.FirstOrDefault(v => v.Id == idValor);
+            
+            if (valor == null)
+                throw new Exception($"No se encontró valor de referencia con Id {idValor}");
+
+            valor.Valor = 15; // Nuevo valor
+            valor.Valor2 = 25; // Nuevo valor2
+
+            var updateBody = new
+            {
+                id = valor.Id,
+                idProducto = valor.IdProducto,
+                idPrueba = valor.IdPrueba,
+                valor = valor.Valor,
+                valor2 = valor.Valor2,
+                unidad = valor.Unidad,
+                comparacion = valor.Comparacion,
+                fechaRegistro = valor.FechaRegistro
+            };
+            var json = JsonSerializer.Serialize(updateBody, _jsonOptions);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync("ValorReferencia", content);
+
+            return response;
+        }
 
 
         // --------------------------------------------------------------------------
         // Métodos para Producto SID
         // --------------------------------------------------------------------------
 
-        /// <summary>
-        /// Obtener listado de productos registrados SID
-        /// </summary>
-        /// 
+            /// <summary>
+            /// Obtener listado de productos registrados SID
+            /// </summary>
+            /// 
         public async Task<List<ProductoSIDDTO>?> ObtenerProductosAsync()
         {
             try
@@ -164,39 +309,21 @@ namespace ApiClientLibrary.Services
         /// 
         public async Task<HttpResponseMessage> AgregarProductoAsync()
         {
-            // Creamos un objeto con todos los campos requeridos
-            var nuevoProducto = new
+
+            // 1️⃣ Crear el nuevo producto (puedes reemplazar con datos dinámicos)
+            var nuevoProducto = new ProductoCreateDTO
             {
-                id = "",
-                codigoFabricante = "TTP02",
-                descripcion = "Nuevo Transformador - prueba",
-                descripcionCorta = "DCC-PRUEBA-02",
-                tipoFabricacion = "SERIE",
-                unidad = "UND",
-                norma = new
-                {
-                    id = "",
-                    clave = "K0000-02",
-                    nombre = "Transformadores de Distribución Tipo Poste",
-                    edicion = "junio 2025",
-                    estatus = "VIGENTE",
-                    esCFE = true,
-                    fechaRegistro = DateTime.UtcNow
-                },
-                prototipo = new
-                {
-                    id = "",
-                    numero = "CEP0002-2025",
-                    fechaEmision = DateTime.UtcNow,
-                    fechaVencimiento = DateTime.UtcNow.AddYears(2),
-                    urlArchivo = "https://www.cfe.mx",
-                    mD5 = "dummyMD5value1234567890",
-                    estatus = "VIGENTE",
-                    fechaRegistro = DateTime.UtcNow
-                },
-                estatus = "ACTIVO",
-                fechaRegistro = DateTime.UtcNow,
-                pruebas = new List<string> { "687a83d143657ba3e593df9f" } // Ejemplo de ID de prueba existente
+                Id = "",
+                CodigoFabricante = "PT-005",
+                Descripcion = "CUCHILLA - 02",
+                DescripcionCorta = "PTR-PRUEBA - 02",
+                TipoFabricacion = "Estándar",
+                Unidad = "Unidad",
+                Norma = "687a837243657ba3e593df9e",
+                Prototipo = "687a89a7f955dd626c61f5cf",
+                Estatus = "ACTIVO",
+                FechaRegistro = DateTime.UtcNow,
+                Pruebas = new List<string> { "68b0a01e663d1c38a0647b29" }
             };
 
             // Serializamos y enviamos POST al endpoint
@@ -216,8 +343,9 @@ namespace ApiClientLibrary.Services
 
         public async Task<HttpResponseMessage> ActualizarProductoAsync()
         {
-            string idProducto = "68a66f9cdf56ae9af3e6db53";
+            string idProducto = "68b2021c8f6c1e31ccd35c73";
 
+            // Obtenemos los productos existentes
             var productos = await ObtenerProductosAsync();
 
             if (productos == null || productos.Count == 0)
@@ -228,8 +356,10 @@ namespace ApiClientLibrary.Services
             if (producto == null)
                 throw new Exception($"No se encontró producto con Id {idProducto}");
 
-            producto.Descripcion = "Transformador actualizado - prueba";
-            producto.DescripcionCorta = "DCC-PRUEBA";
+            // Actualizamos los campos que queramos modificar
+            producto.Descripcion = "POSTE actualizado - 0001";
+            producto.DescripcionCorta = "DCC-PRUEBA-2";
+            producto.Estatus = "INACTIVO";
 
             var updateBody = new
             {
@@ -238,20 +368,24 @@ namespace ApiClientLibrary.Services
                 descripcion = producto.Descripcion,
                 descripcionCorta = producto.DescripcionCorta,
                 tipoFabricacion = producto.TipoFabricacion,
-                unidad = producto.Unidad,
-                norma = producto.Norma,
-                prototipo = producto.Prototipo,
+                unidad = producto.Unidad ?? "",
+                norma = producto.Norma?.Id ?? "",
+                prototipo = producto.Prototipo?.Id ?? "",
                 estatus = producto.Estatus,
                 fechaRegistro = producto.FechaRegistro,
-                pruebas = producto.Pruebas?.Select(p => p.Id).ToList() ?? new List<string>()
+                pruebas = new List<string> { "68b09fac663d1c38a0647b28", "687a83d143657ba3e593df9f" }
             };
 
+
+            // Serializamos el body
             var json = JsonSerializer.Serialize(updateBody, _jsonOptions);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+            // Llamamos al endpoint PUT
             var response = await _httpClient.PutAsync("Producto", content);
 
             return response;
+
         }
 
     }

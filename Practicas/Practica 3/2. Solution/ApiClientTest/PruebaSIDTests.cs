@@ -50,8 +50,13 @@ namespace ApiClientTest
 
         }
 
+        [Fact(DisplayName = "Actualizar prueba SID - Debe devolver 200 OK cuando la actualización es exitosa")]
         public async Task ActualizarPruebasSID()
-        { 
+        {
+            // Act
+            var response = await _servicio.ActualizarPruebasAsync();
+            // Assert
+            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
         }
 
         }
