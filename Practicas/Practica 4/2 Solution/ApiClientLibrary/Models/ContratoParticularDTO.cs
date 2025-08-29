@@ -18,7 +18,7 @@ namespace ApiClientLibrary.Models
         public string Estatus { get; set; }
         public IList<PartidaContratoParticularDTO> DetalleContrato { get; set; }
     }
-
+  
     public class PartidaContratoParticularDTO
     {
         public string PartidaContrato { get; set; }

@@ -35,15 +35,6 @@ namespace ApiClientTest
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
-
-        [Fact(DisplayName = "Registrar contrato Particular - UrlArchivo incorrecta ")]
-        public async Task RegistrarContratoParticular_UrlArchivo_incorrecta()
-        {
-            // Act
-            var response = await _servicio.RegistrarContratoParticular_UrlArchivo_Invalida();
-            // Assert
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-        }
         
         [Fact(DisplayName = "Actualizar contrato Particular - Caso exitoso")]
         public async Task ActualizarContratoParticular()

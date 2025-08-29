@@ -293,7 +293,7 @@ namespace ApiClientLibrary.Services
                 Tipo = "ContratoParticular",
                 Id = "",
                 TipoContrato = "ContratoParticular",
-                NoContrato = "STOCK",
+                NoContrato = "PART0003",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<PartidaContratoParticularDTO>
                     {
@@ -307,27 +307,81 @@ namespace ApiClientLibrary.Services
                         }
                     }
             };
-
-            var json = JsonSerializer.Serialize(contrato);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync("Contratos", content);
-
+            HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
         }
-        public async Task<HttpResponseMessage> RegistrarContratoParticular_UrlArchivo_Invalida()
+        public async Task<HttpResponseMessage> RegistrarContratoParticular_DatosInvalidos()
         {
-            throw new NotImplementedException("Este método aún no está implementado.");
-        }
-        public async Task<HttpResponseMessage> RegistrarContratoParticular_DatosInvalidos() {
-            throw new NotImplementedException("Este método aún no está implementado.");
-        }
+            var contrato = new ContratoParticularDTO
+            {
+                Tipo = "Particular",
+                Id = "",
+                TipoContrato = "ContratoParticular",
+                NoContrato = "P6",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<PartidaContratoParticularDTO>
+                    {
+                        new PartidaContratoParticularDTO
+                        {
+                            PartidaContrato = "1",
+                            DescripcionAviso = "Transformador",
+                            Cantidad = 200,
+                            Unidad = "PIEZA",
+                            ImporteTotal = 2000
+                        }
+                    }
+            };
+            HttpResponseMessage response = await PostAsync("Contratos", contrato);
+            return response;
+        }        
+        
         public async Task<HttpResponseMessage> ActualizarContratoParticular()
         {
-            throw new NotImplementedException("Este método aún no está implementado.");
+            var contrato = new ContratoParticularDTO
+            {
+                Tipo = "ContratoParticular",
+                Id = "68b1f26047567be72d707f27",
+                TipoContrato = "ContratoParticular",
+                NoContrato = "PARTICULAR6",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<PartidaContratoParticularDTO>
+                    {
+                        new PartidaContratoParticularDTO
+                        {
+                            PartidaContrato = "2",
+                            DescripcionAviso = "Transformador",
+                            Cantidad = 60,
+                            Unidad = "PIEZA",
+                            ImporteTotal = 1850
+                        }
+                }
+            };
+            HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
+            return response;
         }
         public async Task<HttpResponseMessage> ActualizarContratoParticular_DatosInvalidos()
         {
-            throw new NotImplementedException("Este método aún no está implementado.");
+            var contrato = new ContratoParticularDTO
+            {
+                Tipo = "ContratoParticular",
+                Id = "",
+                TipoContrato = "ContratoParticular",
+                NoContrato = "PARTICULAR6",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<PartidaContratoParticularDTO>
+                    {
+                        new PartidaContratoParticularDTO
+                        {
+                            PartidaContrato = "2",
+                            DescripcionAviso = "Transformador",
+                            Cantidad = 60,
+                            Unidad = "PIEZA",
+                            ImporteTotal = 1850
+                        }
+                }
+            };
+            HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
+            return response;
         }
         
         public async Task<HttpResponseMessage> ObtenerContratos(int pageNumber, int pageSize) 

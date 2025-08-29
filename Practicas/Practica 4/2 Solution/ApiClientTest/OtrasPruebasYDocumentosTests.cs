@@ -17,13 +17,13 @@ namespace ApiClientTest
         }
 
         [Fact(DisplayName = "Registrar Otras pruebas - Caso exitoso")]
-        public async Task RegistrarOtrasPruebas_Exitoso()
+        public async Task RegistrarPruebaODocumento_Exitoso()
         {
             // Act
-            //var response = await _servicio.RegistrarOtrasPruebas();
+            var response = await _servicio.RegistrarPruebaODocumento();
 
             //// Assert
-            //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
