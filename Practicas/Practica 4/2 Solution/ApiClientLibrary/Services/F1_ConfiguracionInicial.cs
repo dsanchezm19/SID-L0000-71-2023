@@ -67,10 +67,20 @@ namespace ApiClientLibrary.Services
 
 
         #region OtrasPruebasyDocumentos
-        //public async Tast<HttpRequestMessage> RegistrarOtrasPruebas() {
-
-
-        //}
+        public async Task<HttpResponseMessage> RegistrarPruebaODocumento() {
+            var obj = new OtrasPruebasYDocumentosDTO { 
+            Id="",
+            TipoDocumento= "PruebasRutina",
+            DescripcionDocumento="Prueba de rutina al equipo",
+            UrlArchivo= "https://www.cfe.mx",
+            MD5="",
+            Estatus="ACTIVO",
+            Vigencia=new DateTime(2026,2,9),
+            FechaRegistro=DateTime.Now
+            };
+            HttpResponseMessage response = await PostAsync("OtrasPruebasYDocumentos", obj);
+            return response;
+        }
         #endregion
     }
 }
