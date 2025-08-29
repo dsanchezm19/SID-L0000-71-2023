@@ -8,38 +8,39 @@ using System.Threading.Tasks;
 
 namespace ApiClientTest
 {
-    public class ContratoCFEConGarantiaTests
+    public class ContratoParticularTests
     {
         private readonly F2_PreparacionFabricacion _servicio;
-        public ContratoCFEConGarantiaTests()
+        public ContratoParticularTests()
         {
             _servicio = new F2_PreparacionFabricacion();
         }
 
-        [Fact(DisplayName = "Registrar contrato CFE con garantia - Caso exitoso")]
-        public async Task RegistrarContratoCFEConGarantia_Exitoso()
+        [Fact(DisplayName = "Registrar contrato Particular - Caso exitoso")]
+        public async Task RegistrarContratoParticular_Exitoso()
         {
             // Act
-            var response = await _servicio.RegistrarContratoCFEConGarantia();
+            var response = await _servicio.RegistrarContratoParticular();
             string responseBody = await response.Content.ReadAsStringAsync();
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.False(string.IsNullOrWhiteSpace(responseBody));
         }
-
-        [Fact(DisplayName = "Registrar contrato CFE con garantia - Datos inválidos")]
-        public async Task RegistrarContratoCFEConGarantia_DatosInvalidos()
+        
+        [Fact(DisplayName = "Registrar contrato Particular - Datos inválidos")]
+        public async Task RegistrarContratoParticular_DatosInvalidos()
         {
             // Act
-            var response = await _servicio.RegistrarContratoCFEConGarantia_DatosInvalidos();
+            var response = await _servicio.RegistrarContratoParticular_DatosInvalidos();
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
-
-        [Fact(DisplayName = "Actualizar contrato CFE con garantia - Caso exitoso")]
-        public async Task ActualizarContratoCFEConGarantia_Exitoso() {
+        
+        [Fact(DisplayName = "Actualizar contrato Particular - Caso exitoso")]
+        public async Task ActualizarContratoParticular()
+        {
             // Act
-            var response = await _servicio.ActualizarContratoCFEConGarantia();
+            var response = await _servicio.ActualizarContratoParticular();
             string responseBody = await response.Content.ReadAsStringAsync();
 
             // Assert
@@ -47,14 +48,13 @@ namespace ApiClientTest
             Assert.Contains("actualizado correctamente", responseBody);
         }
 
-        [Fact(DisplayName = "Actualizar contrato CFE con garantia - Datos inválidos")]
-        public async Task ActualizarContratoCFEConGarantia_DatosInvalidos()
+        [Fact(DisplayName = "Actualizar contrato Particular - Datos inválidos")]
+        public async Task ActualizarContratoParticular_DatosInvalidos()
         {
             // Act
-            var response = await _servicio.ActualizarContratoCFEConGarantia_DatosInvalidos();
+            var response = await _servicio.ActualizarContratoParticular_DatosInvalidos();
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
-
     }
 }
