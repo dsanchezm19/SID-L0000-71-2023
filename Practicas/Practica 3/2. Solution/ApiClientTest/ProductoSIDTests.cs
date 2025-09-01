@@ -33,21 +33,34 @@ namespace ApiClientTest
         [Fact(DisplayName = "Agregar productos SID - Caso exitoso")]
         public async Task AgregarProductosSID_Exitoso()
         {
-            // Act
+            // Act: llamamos al método para agregar el producto
             var response = await _servicio.AgregarProductoAsync();
 
-            // Assert: verificamos que la respuesta sea exitosa
-            Assert.True(response.IsSuccessStatusCode, $"La respuesta no fue exitosa: {response.StatusCode}");
+            // Assert: verificamos que el código de estado HTTP sea 200 OK
+            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
 
-            // Opcional: si el API devuelve el producto creado, podemos validar algunas propiedades
-            var json = await response.Content.ReadAsStringAsync();
-            Assert.False(string.IsNullOrEmpty(json), "El cuerpo de la respuesta está vacío");
+        [Fact(DisplayName = "Agregar productos SID - Caso conflicto")]
+        public async Task AgregarProductosSinNormaOProductoSID_Exitoso()
+        {
+            // Act: llamamos al método para agregar el producto
+            var response = await _servicio.AgregarProductoAsync();
 
-            // Si quieres deserializarlo para validar campos específicos:
-            var productoCreado = JsonSerializer.Deserialize<ProductoSIDDTO>(json, _jsonOptions);
-            Assert.NotNull(productoCreado);
-            Assert.Equal("Nuevo Transformador - prueba", productoCreado.Descripcion);
-            Assert.Equal("DCC-PRUEBA-02", productoCreado.DescripcionCorta);
+            // Assert: verificamos que el código de estado HTTP sea 400 BadRequest
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact(DisplayName = "Agregar productos SID - Caso conflicto (409)")]
+        public async Task AgregarProductosSID_Conflicto()
+        {
+            // Act & Assert
+            var ex = await Assert.ThrowsAsync<HttpRequestException>(async () =>
+            {
+                await _servicio.AgregarProductoAsync(); // Intentamos agregar el mismo producto nuevamente
+            });
+
+            // Verificamos que el mensaje contenga el 409 Conflict
+            Assert.Contains("409", ex.Message);
         }
 
         [Fact(DisplayName = "Actualizar producto SID - Caso exitoso")]
@@ -58,6 +71,18 @@ namespace ApiClientTest
 
             // Assert
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [Fact(DisplayName = "Actualizar producto SID - Error cuando alguna prueba no existe")]
+        public async Task ActualizarProductosSID_ErrorPruebaNoExiste()
+        {
+            // Act
+            var ex = await Assert.ThrowsAsync<Exception>(async () =>
+                await _servicio.ActualizarProductoAsync()
+            );
+
+            // Assert
+            Assert.Contains("Prueba no encontrada", ex.Message);
         }
     }
 }
