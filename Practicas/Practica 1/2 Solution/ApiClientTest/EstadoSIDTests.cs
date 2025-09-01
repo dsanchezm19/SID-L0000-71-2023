@@ -37,8 +37,6 @@ namespace ApiClientTest
         [Fact(DisplayName = "Registrar Estado SID - Datos inválidos")]
         public async Task RegistrarEstadoSID_DatosInvalidos()
         {
-            // Arrange
-            var estado = new EstadoSIDDTO {Estado = ""};
             // Act
             var response = await _servicio.RegistrarEstadoSID_DatosInvalidos();
             // Assert

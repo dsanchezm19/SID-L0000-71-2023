@@ -62,18 +62,18 @@ namespace ApiClientLibrary.Services
                 Tipo = "ContratoCFE",
                 Id = "",
                 TipoContrato = "ContratoCFE",
-                NoContrato = "87489568",
+                NoContrato = "9100026571",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<DetalleContratoDTO>
                     {
                         new DetalleContratoDTO
                         {
-                            PartidaContrato = "1",
-                            DescripcionAviso = "Transformador",
-                            AreaDestinoCFE = "Almacén Bajio",
-                            Cantidad = 10,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 1000
+                            PartidaContrato = "55",
+                            DescripcionAviso = "CABLE CONTROL CU PVC + PVC  8X10  C/B OCHO CONDUCTORES DE COBRE, CALIBRE 10 AWG, FORRADOS DE AISLAMIENTO DE PVC-LS, RPI, 75°C, 600V, CON BLINDAJE DE MALLA TRENZADA DE COBRE, CUBIERTA DE PVC COLOR NEGRO. ESPECIFICACIÓN CFE E0000-20/2005 TOTAL DE TRAMOS: 1081304",
+                            AreaDestinoCFE = "JALISCO D144 TLAQUEPAQUE JAL.COL. LAS JUNTAS",
+                            Cantidad = 500,
+                            Unidad = "Metros",
+                            ImporteTotal = 93055.00m
                         }
                     },
                 UrlArchivo = "https://www.cfe.mx",
@@ -119,24 +119,25 @@ namespace ApiClientLibrary.Services
                 Tipo = "ContratoCFE",
                 Id = "",
                 TipoContrato = "ContratoCFE",
-                NoContrato = "87489568",
+                NoContrato = "9100026571",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<DetalleContratoDTO>
                     {
                         new DetalleContratoDTO
                         {
-                            PartidaContrato = "1",
-                            DescripcionAviso = "Transformador",
-                            AreaDestinoCFE = "Almacén Bajio",
-                            Cantidad = 10,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 1000
+                            PartidaContrato = "55",
+                            DescripcionAviso = "CABLE CONTROL CU PVC + PVC  8X10  C/B OCHO CONDUCTORES DE COBRE, CALIBRE 10 AWG, FORRADOS DE AISLAMIENTO DE PVC-LS, RPI, 75°C, 600V, CON BLINDAJE DE MALLA TRENZADA DE COBRE, CUBIERTA DE PVC COLOR NEGRO. ESPECIFICACIÓN CFE E0000-20/2005 TOTAL DE TRAMOS: 1081304",
+                            AreaDestinoCFE = "JALISCO D144 TLAQUEPAQUE JAL.COL. LAS JUNTAS",
+                            Cantidad = 500,
+                            Unidad = "Metros",
+                            ImporteTotal = 93055.00m
                         }
                     },
                 UrlArchivo = "C:/Mis documentos",
                 MD5 = "",
                 FechaEntregaCFE = new DateTime(2025, 7, 18)
             };
+
             HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
         }
@@ -195,25 +196,43 @@ namespace ApiClientLibrary.Services
             var contrato = new ContratoCFEDTO
             {
                 Tipo = "ContratoCFE",
-                Id = "68b06f8e5227cb49c87cc22d",
+                Id = "68b5b4973b7309591c0d829d",
                 TipoContrato = "ContratoCFE",
-                NoContrato = "PK897854",
+                NoContrato = "9100026571",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<DetalleContratoDTO>
                     {
                         new DetalleContratoDTO
                         {
-                            PartidaContrato = "7",
-                            DescripcionAviso = "Transformador pedestal",
-                            AreaDestinoCFE = "Almacén CFE",
-                            Cantidad = 5,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 5000
+                            PartidaContrato = "55",
+                            DescripcionAviso = "CABLE CONTROL CU PVC + PVC  8X10  C/B OCHO CONDUCTORES DE COBRE, CALIBRE 10 AWG, FORRADOS DE AISLAMIENTO DE PVC-LS, RPI, 75°C, 600V, CON BLINDAJE DE MALLA TRENZADA DE COBRE, CUBIERTA DE PVC COLOR NEGRO. ESPECIFICACIÓN CFE E0000-20/2005 TOTAL DE TRAMOS: 1081304",
+                            AreaDestinoCFE = "JALISCO D144 TLAQUEPAQUE JAL.COL. LAS JUNTAS",
+                            Cantidad = 500,
+                            Unidad = "Metros",
+                            ImporteTotal = 93055
+                        },
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "76",
+                            DescripcionAviso = "CABLE CONTROL 6X12 CABLE CONTROL 6X12 NMX-J-300-ANCE 2013/0132.",
+                            AreaDestinoCFE = "ALMACÉN DIVISIONAL NOROESTE CARR HERMOSILLO-EL NOVILLO",
+                            Cantidad = 800,
+                            Unidad = "Metros",
+                            ImporteTotal = 77504
+                        },
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "85",
+                            DescripcionAviso = " CABLE SA-AAC (266.8)-XLP38 CABLE SA-AAC (266.8)-XLP38 CFE E0000-29 2020/09",
+                            AreaDestinoCFE = "ALMACÉN DIVISIONAL GOLFO CENTRO CARR TAMPICO-MANTE KM 14 No.S/N, COL| VILLA HERMOSA 89319|TAMPICO",
+                            Cantidad = 100,
+                            Unidad = "Metros",
+                            ImporteTotal = 9689.25m
                         }
-                    },
+                    },  
                 UrlArchivo = "https://www.cfe.mx",
                 MD5 = "",
-                FechaEntregaCFE = new DateTime(2025, 7, 19)
+                FechaEntregaCFE = new DateTime(2025, 7, 18)
             };
 
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
@@ -333,8 +352,7 @@ namespace ApiClientLibrary.Services
             };
             HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
-        }        
-        
+        }                
         public async Task<HttpResponseMessage> ActualizarContratoParticular()
         {
             var contrato = new ContratoParticularDTO
@@ -382,8 +400,7 @@ namespace ApiClientLibrary.Services
             };
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
-        }
-        
+        }        
         public async Task<HttpResponseMessage> ObtenerContratos(int pageNumber, int pageSize) 
         { 
             var url = $"Contratos?pageNumber={pageNumber}&pageSize={pageSize}";

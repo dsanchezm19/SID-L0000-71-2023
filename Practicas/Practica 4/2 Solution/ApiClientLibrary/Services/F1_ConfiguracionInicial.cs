@@ -49,23 +49,6 @@ namespace ApiClientLibrary.Services
             return response;
         }
 
-        #region EstadoSID
-        public async Task<HttpResponseMessage> RegistrarEstadoSID()
-        {
-            var estado = new EstadoSIDDTO { Estado = "EN_PRUEBAS" };
-            HttpResponseMessage response = await PostAsync("EstadoSID", estado);
-            return response;
-        }
-
-        public async Task<HttpResponseMessage> RegistrarEstadoSID_DatosInvalidos()
-        {
-            var estado = new EstadoSIDDTO { Estado = "" };
-            HttpResponseMessage response = await PostAsync("EstadoSID", estado);
-            return response;
-        }
-        #endregion
-
-
         #region OtrasPruebasyDocumentos
         public async Task<HttpResponseMessage> RegistrarPruebaODocumento() {
             var obj = new OtrasPruebasYDocumentosDTO { 
@@ -80,6 +63,12 @@ namespace ApiClientLibrary.Services
             };
             HttpResponseMessage response = await PostAsync("OtrasPruebasYDocumentos", obj);
             return response;
+        }
+
+        public async Task<HttpResponseMessage> RegistrarPruebaODocumento_DatosInvalidos()
+        {
+            throw new NotImplementedException();
+
         }
         #endregion
     }
