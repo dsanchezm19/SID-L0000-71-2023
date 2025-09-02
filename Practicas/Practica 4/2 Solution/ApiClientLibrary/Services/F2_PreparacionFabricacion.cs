@@ -101,7 +101,7 @@ namespace ApiClientLibrary.Services
                             DescripcionAviso = "Transformador",
                             AreaDestinoCFE = "Almacén Bajio",
                             Cantidad = 10,
-                            Unidad = "PIEZA",
+                            Unidad = "Pieza",
                             ImporteTotal = 1000
                         }
                     },
@@ -141,58 +141,8 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
         }
-        public async Task<HttpResponseMessage> RegistrarContratoCFEConGarantia()
+        public async Task<HttpResponseMessage> ActualizarContratoCFE()
         {
-            var contrato = new ContratoCFEConGarantiaDTO
-            {
-                Tipo = "ContratoCFEConGarantia",
-                Id = "",
-                TipoContrato = "ContratoCFEConGarantia",
-                NoContrato = "6875686",
-                Estatus = "ACTIVO",
-                DetalleContrato = new List<DetalleContratoDTO>
-                    {
-                        new DetalleContratoDTO
-                        {
-                            PartidaContrato = "1",
-                            DescripcionAviso = "Transformador",
-                            AreaDestinoCFE = "CFE",
-                            Cantidad = 200,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 2000
-                        }
-                    },
-                PerdidasGarantizadasVacio = 2131.90m,
-                PerdidasGarantizadasCarga = 23.90m,
-                UrlArchivo = "https://www.cfe.mx",
-                MD5 = "",
-                FechaEntregaCFE = new DateTime(2025, 5, 15)
-            };
-
-            HttpResponseMessage response = await PostAsync("Contratos", contrato);
-            return response;
-        }
-        public async Task<HttpResponseMessage> RegistrarContratoCFEConGarantia_DatosInvalidos()
-        {
-            var contrato = new ContratoCFEConGarantiaDTO
-            {
-                Tipo = "CFEConGarantia",
-                Id = "",
-                TipoContrato = "ContratoCFEConGarantia",
-                NoContrato = "6875686",
-                Estatus = "ACTIVO",
-                DetalleContrato = new List<DetalleContratoDTO>(),
-                PerdidasGarantizadasVacio = 2131.90m,
-                PerdidasGarantizadasCarga = 23.90m,
-                UrlArchivo = "https://www.cfe.mx",
-                MD5 = "",
-                FechaEntregaCFE = new DateTime(2025, 9,24)
-            };
-
-            HttpResponseMessage response = await PostAsync("Contratos", contrato);
-            return response;
-        }
-        public async Task<HttpResponseMessage> ActualizarContratoCFE() {
             var contrato = new ContratoCFEDTO
             {
                 Tipo = "ContratoCFE",
@@ -229,7 +179,7 @@ namespace ApiClientLibrary.Services
                             Unidad = "Metros",
                             ImporteTotal = 9689.25m
                         }
-                    },  
+                    },
                 UrlArchivo = "https://www.cfe.mx",
                 MD5 = "",
                 FechaEntregaCFE = new DateTime(2025, 7, 18)
@@ -238,6 +188,57 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
         }
+        public async Task<HttpResponseMessage> RegistrarContratoCFEConGarantia()
+        {
+            var contrato = new ContratoCFEConGarantiaDTO
+            {
+                Tipo = "ContratoCFEConGarantia",
+                Id = "",
+                TipoContrato = "ContratoCFEConGarantia",
+                NoContrato = "9100025605",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<DetalleContratoDTO>
+                    {
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "34",
+                            DescripcionAviso = "TRANSFORMADOR TIPO POSTE D1-15-13200YT/7620-120/240; ACORDE CON LA CFE K1000-01-2016. NUMERO DE CONSTANCIA PROTOTIPO K311P-16-E/7036.",
+                            AreaDestinoCFE = "CENTRO SUR",
+                            Cantidad = 8,
+                            Unidad = "Pieza",
+                            ImporteTotal = 165590.32m
+                        }
+                    },
+                PerdidasGarantizadasVacio = 41.90m,
+                PerdidasGarantizadasCarga = 63,
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",
+                FechaEntregaCFE = new DateTime(2025, 5, 15)
+            };
+
+            HttpResponseMessage response = await PostAsync("Contratos", contrato);
+            return response;
+        }
+        public async Task<HttpResponseMessage> RegistrarContratoCFEConGarantia_DatosInvalidos()
+        {
+            var contrato = new ContratoCFEConGarantiaDTO
+            {
+                Tipo = "CFEConGarantia",
+                Id = "",
+                TipoContrato = "ContratoCFEConGarantia",
+                NoContrato = "6875686",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<DetalleContratoDTO>(),
+                PerdidasGarantizadasVacio = 2131.90m,
+                PerdidasGarantizadasCarga = 23.90m,
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",
+                FechaEntregaCFE = new DateTime(2025, 9,24)
+            };
+
+            HttpResponseMessage response = await PostAsync("Contratos", contrato);
+            return response;
+        }        
         public async Task<HttpResponseMessage> ActualizarContratoCFE_DatosInvalidos() {
             var contrato = new ContratoCFEDTO
             {
@@ -256,30 +257,39 @@ namespace ApiClientLibrary.Services
             return response;
         }
         public async Task<HttpResponseMessage> ActualizarContratoCFEConGarantia() {
-        var contrato = new ContratoCFEConGarantiaDTO
+            var contrato = new ContratoCFEConGarantiaDTO
             {
                 Tipo = "ContratoCFEConGarantia",
-                Id = "68b09c1f9029cd6eb03cc919",
+                Id = "68b5fc963b7309591c0d829e",
                 TipoContrato = "ContratoCFEConGarantia",
-                NoContrato = "255892568",
+                NoContrato = "9100025605",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<DetalleContratoDTO>
-                {
-                    new DetalleContratoDTO
                     {
-                        PartidaContrato = "7",
-                        DescripcionAviso = "Transformador tipo pedestal",
-                        AreaDestinoCFE = "Almacén CFE",
-                        Cantidad = 50,
-                        Unidad = "PIEZA",
-                        ImporteTotal = 4500
-                    }
-                },
-                PerdidasGarantizadasVacio = 2131.90m,
-                PerdidasGarantizadasCarga = 23.90m,
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "34",
+                            DescripcionAviso = "TRANSFORMADOR TIPO POSTE D1-15-13200YT/7620-120/240; ACORDE CON LA CFE K1000-01-2016. NUMERO DE CONSTANCIA PROTOTIPO K311P-16-E/7036.",
+                            AreaDestinoCFE = "CENTRO SUR",
+                            Cantidad = 8,
+                            Unidad = "Pieza",
+                            ImporteTotal = 165590.32m
+                        },
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "57",
+                            DescripcionAviso = "TRANSFORMADOR TIPO POSTEDA1-10-13200-120/240; ACORDE CON LA CFE K1000-01-2016.",
+                            AreaDestinoCFE = "SURESTE",
+                            Cantidad = 5,
+                            Unidad = "Pieza",
+                            ImporteTotal = 99999.60m
+                        }
+                    },
+                PerdidasGarantizadasVacio = 42,
+                PerdidasGarantizadasCarga = 63,
                 UrlArchivo = "https://www.cfe.mx",
                 MD5 = "",
-                FechaEntregaCFE = new DateTime(2025, 5, 25)
+                FechaEntregaCFE = new DateTime(2025, 5, 15)
             };
 
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
@@ -305,6 +315,9 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
         }
+        #endregion
+
+        #region ContratoParticular
         public async Task<HttpResponseMessage> RegistrarContratoParticular()
         {
             var contrato = new ContratoParticularDTO
@@ -312,17 +325,17 @@ namespace ApiClientLibrary.Services
                 Tipo = "ContratoParticular",
                 Id = "",
                 TipoContrato = "ContratoParticular",
-                NoContrato = "PART0003",
+                NoContrato = "STOCK",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<PartidaContratoParticularDTO>
                     {
                         new PartidaContratoParticularDTO
                         {
-                            PartidaContrato = "1",
-                            DescripcionAviso = "Transformador",
-                            Cantidad = 200,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 2000
+                            PartidaContrato = "307",
+                            DescripcionAviso = "CABLE DE POTENCIA MONOPOLAR AL - (1/0) - XLP - 35 - 100 CABLE DE ENERGÍA, UN CONDUCTOR DE ALUMINIO COMPACTO SELLADO, CALIBRE 1/0 AWG, XLP 100",
+                            Cantidad = 15480,
+                            Unidad = "Metros",
+                            ImporteTotal = 1120860.51m
                         }
                     }
             };
@@ -336,19 +349,9 @@ namespace ApiClientLibrary.Services
                 Tipo = "Particular",
                 Id = "",
                 TipoContrato = "ContratoParticular",
-                NoContrato = "P6",
+                NoContrato = "0",
                 Estatus = "ACTIVO",
-                DetalleContrato = new List<PartidaContratoParticularDTO>
-                    {
-                        new PartidaContratoParticularDTO
-                        {
-                            PartidaContrato = "1",
-                            DescripcionAviso = "Transformador",
-                            Cantidad = 200,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 2000
-                        }
-                    }
+                DetalleContrato = new List<PartidaContratoParticularDTO>()
             };
             HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
@@ -358,21 +361,29 @@ namespace ApiClientLibrary.Services
             var contrato = new ContratoParticularDTO
             {
                 Tipo = "ContratoParticular",
-                Id = "68b1f26047567be72d707f27",
+                Id = "68b7366eb53b69f1a1caec2e",
                 TipoContrato = "ContratoParticular",
-                NoContrato = "PARTICULAR6",
+                NoContrato = "STOCK",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<PartidaContratoParticularDTO>
                     {
                         new PartidaContratoParticularDTO
                         {
+                            PartidaContrato = "307",
+                            DescripcionAviso = "CABLE DE POTENCIA MONOPOLAR AL - (1/0) - XLP - 35 - 100 CABLE DE ENERGÍA, UN CONDUCTOR DE ALUMINIO COMPACTO SELLADO, CALIBRE 1/0 AWG, XLP 100",
+                            Cantidad = 15480,
+                            Unidad = "Metros",
+                            ImporteTotal = 1120860.51m
+                        },
+                        new PartidaContratoParticularDTO
+                        {
                             PartidaContrato = "2",
-                            DescripcionAviso = "Transformador",
-                            Cantidad = 60,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 1850
+                            DescripcionAviso = " CABLE AL (3/0)-XLP-RA-15-100-B CFE E1000-16 2016/05 Cable Energia media tension de 5 kV a 35 kV",
+                            Cantidad = 2000,
+                            Unidad = "Metros",
+                            ImporteTotal = 147083.94m
                         }
-                }
+                    }
             };
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
@@ -384,30 +395,30 @@ namespace ApiClientLibrary.Services
                 Tipo = "ContratoParticular",
                 Id = "",
                 TipoContrato = "ContratoParticular",
-                NoContrato = "PARTICULAR6",
+                NoContrato = "STOCK",
                 Estatus = "ACTIVO",
                 DetalleContrato = new List<PartidaContratoParticularDTO>
                     {
                         new PartidaContratoParticularDTO
                         {
-                            PartidaContrato = "2",
-                            DescripcionAviso = "Transformador",
-                            Cantidad = 60,
-                            Unidad = "PIEZA",
-                            ImporteTotal = 1850
+                            PartidaContrato = "307",
+                            DescripcionAviso = "CABLE DE POTENCIA MONOPOLAR AL - (1/0) - XLP - 35 - 100 CABLE DE ENERGÍA, UN CONDUCTOR DE ALUMINIO COMPACTO SELLADO, CALIBRE 1/0 AWG, XLP 100",
+                            Cantidad = 15480,
+                            Unidad = "Metros",
+                            ImporteTotal = 1120860.51m
                         }
-                }
+                    }
             };
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
-        }        
+        }
+        #endregion
         public async Task<HttpResponseMessage> ObtenerContratos(int pageNumber, int pageSize) 
         { 
             var url = $"Contratos?pageNumber={pageNumber}&pageSize={pageSize}";
             var response = await _httpClient.GetAsync(url);
             return response;
         }
-    }
-    #endregion
+    }  
 
 }

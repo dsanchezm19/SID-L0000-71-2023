@@ -53,7 +53,7 @@ namespace ApiClientLibrary.Services
         public async Task<HttpResponseMessage> RegistrarPruebaODocumento() {
             var obj = new OtrasPruebasYDocumentosDTO { 
             Id="",
-            TipoDocumento= "PruebasRutina",
+            TipoDocumento= "Prueba Rutina",
             DescripcionDocumento="Prueba de rutina al equipo",
             UrlArchivo= "https://www.cfe.mx",
             MD5="",
@@ -65,11 +65,40 @@ namespace ApiClientLibrary.Services
             return response;
         }
 
-        public async Task<HttpResponseMessage> RegistrarPruebaODocumento_DatosInvalidos()
+        public async Task<HttpResponseMessage> RegistrarPruebaODocumento_TipoDocumentoInvalido()
         {
-            throw new NotImplementedException();
-
+            var obj = new OtrasPruebasYDocumentosDTO
+            {
+                Id = "",
+                TipoDocumento = "PruebaDeRutina",
+                DescripcionDocumento = "Prueba de rutina al equipo",
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",
+                Estatus = "ACTIVO",
+                Vigencia = new DateTime(2026, 2, 9),
+                FechaRegistro = DateTime.Now
+            };
+            HttpResponseMessage response = await PostAsync("OtrasPruebasYDocumentos", obj);
+            return response;
         }
+
+        public async Task<HttpResponseMessage> RegistrarPruebaODocumento_URLArchivoInvalida()
+        {
+            var obj = new OtrasPruebasYDocumentosDTO
+            {
+                Id = "",
+                TipoDocumento = "PruebaDeRutina",
+                DescripcionDocumento = "Prueba de rutina al equipo",
+                UrlArchivo = "C:/MisDocumentos",
+                MD5 = "",
+                Estatus = "ACTIVO",
+                Vigencia = new DateTime(2026, 2, 9),
+                FechaRegistro = DateTime.Now
+            };
+            HttpResponseMessage response = await PostAsync("OtrasPruebasYDocumentos", obj);
+            return response;
+        }
+
         #endregion
     }
 }
