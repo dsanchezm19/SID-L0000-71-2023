@@ -40,27 +40,28 @@ namespace ApiClientTest
 
         [Fact(DisplayName = "Actualizar contrato CFE con garantia - Caso exitoso con minimo 2 partidas")]
         public async Task ActualizarContratoCFEConGarantia_Exitoso_DebeTenerMinimoDosPartidas() {
+            //Arrange
+            var idBuscado = "68b5fc963b7309591c0d829e";
+            var noContrato = "9100025605";
+
             // Act
             var response = await _servicio.ActualizarContratoCFEConGarantia();
             string responseBody = await response.Content.ReadAsStringAsync();
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Contains("actualizado correctamente", responseBody);
-
             // Buscar el contrato específico
             var responseContratos = await _servicio.ObtenerContratos(1, 50);
             responseContratos.EnsureSuccessStatusCode();
-
             var responseContratosBody = await responseContratos.Content.ReadAsStringAsync();
             var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var resultado = JsonSerializer.Deserialize<ListaContratosCFEConGarantiaDTO>(responseContratosBody, opciones);
 
             var contrato = resultado.Contratos.FirstOrDefault(c =>
                 c.TipoContrato == "ContratoCFEConGarantia" &&
-                c.NoContrato == "9100025605" && c.Id == "68b5fc963b7309591c0d829e"
+                c.NoContrato == noContrato && c.Id == idBuscado
             );
 
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Contains("actualizado correctamente", responseBody);            
             Assert.NotNull(contrato);
             Assert.True(contrato.PerdidasGarantizadasVacio.Equals(42), $"Las pérdidas garantizadas en vacío no tiene el valor: 42. Tiene {contrato.PerdidasGarantizadasVacio}.");
             Assert.NotNull(contrato.DetalleContrato);
