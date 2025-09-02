@@ -40,3 +40,5 @@ es importante que Tipo y TipoContrato sea: ContratoParticular
 -Registrar otras pruebas o documento válido
 -Registrar otras pruebas o documento con un tipo de documento inválidos
 -Actualizar la URL de la prueba de rutina: 68b74b041508cbf69f2cd733, se cambio la URL por: https://www.cfe.gob.mx/transparencia_etica/Pages/default.aspx
+-Actualizar otras pruebas o documento con información invalida (no contiene el id a actualizar)
+-Correr la prueba "Obtener otras pruebas o documentos"
