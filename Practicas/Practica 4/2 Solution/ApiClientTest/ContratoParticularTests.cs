@@ -41,27 +41,26 @@ namespace ApiClientTest
         [Fact(DisplayName = "Actualizar contrato Particular - Caso exitoso con minimo 2 partidas")]
         public async Task ActualizarContratoParticula_Exitoso_DebeTenerMinimoDosPartidasr()
         {
+            //Arrange
+            var idBuscado = "68b7366eb53b69f1a1caec2e";
+
             // Act
             var response = await _servicio.ActualizarContratoParticular();
             string responseBody = await response.Content.ReadAsStringAsync();
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Contains("actualizado correctamente", responseBody);
-
             // Buscar el contrato específico
             var responseContratos = await _servicio.ObtenerContratos(1, 150);
             responseContratos.EnsureSuccessStatusCode();
-
             var responseContratosBody = await responseContratos.Content.ReadAsStringAsync();
             var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var resultado = JsonSerializer.Deserialize<ListaContratosParticularDTO>(responseContratosBody, opciones);
 
             var contrato = resultado.Contratos.FirstOrDefault(c =>
                 c.TipoContrato == "ContratoParticular" &&
-                c.Id == "68b7366eb53b69f1a1caec2e"
+                c.Id == idBuscado
             );
-
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Contains("actualizado correctamente", responseBody);
             Assert.NotNull(contrato);
             Assert.NotNull(contrato.DetalleContrato);
             Assert.True(contrato.DetalleContrato.Count >= 2, $"El contrato tiene menos de 2 partidas. Tiene {contrato.DetalleContrato.Count}.");
