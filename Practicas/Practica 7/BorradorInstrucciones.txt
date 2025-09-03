@@ -1,0 +1,8 @@
+-Agregar la muestra CABLE MÚLTIPLE AAC-AAC
+-Agregar muestra en expediente que no existe 
+-Agregar muestra con datos incorrectos (la prueba por ahora no pasa ya que no se ha validado)
+
+-Quitar muestra CABLE MÚLTIPLE AAC-AAC del expediente
+-Quitar muestra expediente que no existe
+-Quitar muestra expediente que no contiene la muestra
+
