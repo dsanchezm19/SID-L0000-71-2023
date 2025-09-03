@@ -93,27 +93,27 @@ namespace ApiClientTest
         [Fact(DisplayName = "Actualizar contrato CFE - Caso exitoso con minimo 3 partidas")]
         public async Task ActualizarContratoCFE_DebeTenerMinimoTresPartidas()
         {
+            //Arrange
+            var idBuscado = "68b5b4973b7309591c0d829d";
+            var noContrato = "9100026571";
             // Act
             var response = await _servicio.ActualizarContratoCFE();
             var responseBody = await response.Content.ReadAsStringAsync();
-            
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Contains("actualizado correctamente", responseBody);
 
             // Buscar el contrato específico
             var responseContratos = await _servicio.ObtenerContratos(1, 50);
             responseContratos.EnsureSuccessStatusCode();
-
             var responseContratosBody = await responseContratos.Content.ReadAsStringAsync();
             var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var resultado = JsonSerializer.Deserialize<ListaContratosDTO>(responseContratosBody, opciones);
-
             var contrato = resultado.Contratos.FirstOrDefault(c =>
                 c.TipoContrato == "ContratoCFE" &&
-                c.NoContrato == "9100026571" && c.Id== "68b5b4973b7309591c0d829d"
+                c.NoContrato == noContrato && c.Id == idBuscado
             );
 
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Contains("actualizado correctamente", responseBody);
             Assert.NotNull(contrato);
             Assert.NotNull(contrato.DetalleContrato);
             Assert.True(contrato.DetalleContrato.Count >= 3, $"El contrato '9100026571' tiene menos de 3 partidas. Tiene {contrato.DetalleContrato.Count}.");
