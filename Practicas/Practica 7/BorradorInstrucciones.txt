@@ -1,4 +1,5 @@
 -Agregar la muestra CABLE MÚLTIPLE AAC-AAC
+-Correr prueba "Agregar muestra al expediente - Muestra duplicada" 
 -Agregar muestra en expediente que no existe 
 -Agregar muestra con datos incorrectos (la prueba por ahora no pasa ya que no se ha validado)
 
