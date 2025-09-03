@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiClientLibrary.Models
 {
-    public class AgregaMuestraDTO
+    public class MuestraDTO
     {
         public string Identificador { get; set; }
         public string Estatus { get; set; }

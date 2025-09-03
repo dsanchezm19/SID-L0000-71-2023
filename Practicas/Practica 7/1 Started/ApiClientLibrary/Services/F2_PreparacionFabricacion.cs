@@ -34,12 +34,17 @@ namespace ApiClientLibrary.Services
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", token);
             }
-        }        
+        }
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_Exitoso()
         {
             throw new NotImplementedException();
         }
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_NoExisteExpediente()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_DatosInvalidos()
         {
             throw new NotImplementedException();
@@ -49,11 +54,14 @@ namespace ApiClientLibrary.Services
             throw new NotImplementedException();
         }
 
-        public async Task<HttpResponseMessage> QuitarMuestraExpediente_Error()
+        public async Task<HttpResponseMessage> QuitarMuestraExpediente_NoExisteExpediente()
         {
             throw new NotImplementedException();
         }
 
-
+        public async Task<HttpResponseMessage> QuitarMuestraExpediente_NoExisteMuestra()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
