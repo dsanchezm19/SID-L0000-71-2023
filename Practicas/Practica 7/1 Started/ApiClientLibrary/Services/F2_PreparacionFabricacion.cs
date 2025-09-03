@@ -40,6 +40,11 @@ namespace ApiClientLibrary.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error()
+        {
+            throw new NotImplementedException();
+        }
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_NoExisteExpediente()
         {
             throw new NotImplementedException();

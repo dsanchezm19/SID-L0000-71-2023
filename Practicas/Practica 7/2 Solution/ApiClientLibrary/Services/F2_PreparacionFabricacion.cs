@@ -55,6 +55,17 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
         }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error() {
+            var Expediente = "EXP-12345";
+            var muestra = new
+            {
+                Identificador = "CABLE MÚLTIPLE AAC-AAC",
+                Estatus = "PENDIENTE_PRUEBAS"
+            };
+            HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
+            return response;
+        }
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_NoExisteExpediente()
         {
             var Expediente = "EXP-";

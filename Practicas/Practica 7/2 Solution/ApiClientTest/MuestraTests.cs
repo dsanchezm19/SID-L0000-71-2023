@@ -2,6 +2,7 @@
 using ApiClientLibrary.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
@@ -34,6 +35,17 @@ namespace ApiClientTest
             // Assert 3: que la muestra exista en el expediente
             Assert.Contains(expediente.MuestrasExpediente,
                 m => m.Identificador == "CABLE MÚLTIPLE AAC-AAC" && m.Estatus == "PENDIENTE_PRUEBAS");         
+        }
+
+        [Fact(DisplayName = "Agregar muestra al expediente - Muestra duplicada")]
+        public async Task AgregarMuestraExpediente_MuestraDuplicada_Error() {
+            // Act
+            var response = await _servicio.AgregarMuestraExpediente_MuestraDuplicada_Error();
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            //// Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Contains("ya existe en el expediente", responseBody);
         }
 
         [Fact(DisplayName = "Agregar muestra al expediente - No existe expediente")]
