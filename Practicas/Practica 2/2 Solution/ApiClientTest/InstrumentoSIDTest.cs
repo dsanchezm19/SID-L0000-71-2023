@@ -19,6 +19,15 @@ namespace ApiClientTest
         {
             _servicio = new F1_ConfiguracionInicial();
         }
+        [Fact(DisplayName = "Obtener el listado de Instrumentos para SID - Caso exitoso")]
+        public async Task ObtenerInstrumentosPruebasAsync()
+        {
+            // Act
+            var resultado = await _servicio.ObtenerInstrumentosPruebasAsync();
+            // Assert
+            Assert.NotNull(resultado);
+            Assert.NotEmpty(resultado);
+        }
         [Fact(DisplayName = "Registrar Intrumento SID - Caso exitoso")]
         public async Task RegistrarInstrumentoSID_Exitoso()
         {
@@ -49,6 +58,16 @@ namespace ApiClientTest
             Assert.NotNull(instrumento);
             Assert.Equal("pie de rey", instrumento.Nombre);
         }
+        [Fact(DisplayName = "Agregar productos SID - Caso conflicto")]
+        public async Task AgregarInstrumentoInvalidSID_Exitoso()
+        {
+            // Act: llamamos al método para agregar el producto
+            var response = await _servicio.AgregarInstrumentoAsync();
+
+            // Assert: verificamos que el código de estado HTTP sea 400 BadRequest
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
 
     }
 }

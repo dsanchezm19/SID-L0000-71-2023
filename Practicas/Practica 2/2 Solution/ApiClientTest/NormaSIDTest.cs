@@ -15,6 +15,18 @@ namespace ApiClientTest
         {
             _servicio = new F1_ConfiguracionInicial();
         }
+
+        [Fact(DisplayName = "Obtener el listado de normas SID - Caso exitoso")]
+        public async Task ObtenerListadoProductosSID_Exitoso()
+        {
+            // Act
+            var resultado = await _servicio.ObtenerNormasAsync();
+
+            // Assert
+            Assert.NotNull(resultado);
+            Assert.NotEmpty(resultado);
+        }
+
         [Fact(DisplayName = "Registrar Norma SID - Caso exitoso")]
         public async Task RegistrarNormaSID_Exitoso()
         {

@@ -15,6 +15,7 @@ namespace ApiClientLibrary.Services
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
         private readonly string _basePath = "F1_ConfiguracionInicial/";
+        private readonly JsonSerializerOptions _jsonOptions;
         public F1_ConfiguracionInicial()
         {
             var builder = new ConfigurationBuilder()
@@ -70,13 +71,13 @@ namespace ApiClientLibrary.Services
             {
                 Id = "025",
                 Nombre = "Bernier",
-                NumeroSerie="25452121",
-                FechaCalibracion= new DateTime(2025, 8, 28),
-                FechaVencimientoCalibracion= new DateTime(2027, 8, 28),
-                UrlArchivo="https://www.cfe.mx",
-                MD5="",
-                Estatus="VIGENTE",
-                FechaRegistro= new DateTime(2027, 9, 02)
+                NumeroSerie = "25452121",
+                FechaCalibracion = new DateTime(2025, 8, 28),
+                FechaVencimientoCalibracion = new DateTime(2027, 8, 28),
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",
+                Estatus = "VIGENTE",
+                FechaRegistro = new DateTime(2027, 9, 02)
             };
             HttpResponseMessage response = await PostAsync("Instrumento", instrumento);
             return response;
@@ -85,13 +86,13 @@ namespace ApiClientLibrary.Services
         {
             var norma = new NormaDTO
             {
-                Id="025",
-                Clave="NMX-17025-IMNC",
-                Nombre="Competencia de laboratorios de ensayo",
-                Edicion="2025",
-                Estatus="VIGENTE",
-                EsCFE=true,
-                FechaRegistro=new DateTime(2027, 9, 03)
+                Id = "025",
+                Clave = "NMX-17025-IMNC",
+                Nombre = "Competencia de laboratorios de ensayo",
+                Edicion = "2025",
+                Estatus = "VIGENTE",
+                EsCFE = true,
+                FechaRegistro = new DateTime(2027, 9, 03)
             };
             HttpResponseMessage response = await PostAsync("Norma", norma);
             return response;
@@ -100,14 +101,14 @@ namespace ApiClientLibrary.Services
         {
             var prototipo = new PrototipoDTO
             {
-              Id="2100",
-              Numero="541252",
-              FechaEmision=new DateTime(2024 ,9, 25),
-              FechaVencimiento=new DateTime(2027 ,9, 25),
-              UrlArchivo= "https://www.cfe.mx",
-              MD5=null,
-              Estatus="VIGENTE",
-              FechaRegistro=new DateTime(2025, 9, 3)
+                Id = "2100",
+                Numero = "541252",
+                FechaEmision = new DateTime(2024, 9, 25),
+                FechaVencimiento = new DateTime(2027, 9, 25),
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = null,
+                Estatus = "VIGENTE",
+                FechaRegistro = new DateTime(2025, 9, 3)
             };
             HttpResponseMessage response = await PostAsync("Prototipo", prototipo);
             return response;
@@ -117,7 +118,7 @@ namespace ApiClientLibrary.Services
         {
             var instrumento = new InstrumentoDTO
             {
-                Id= "68b73b8f31182e4d37ac4ebe",
+                Id = "68b73b8f31182e4d37ac4ebe",
                 Nombre = "pie de rey",
                 NumeroSerie = "25452121",
                 FechaCalibracion = new DateTime(2025, 8, 28),
@@ -136,22 +137,85 @@ namespace ApiClientLibrary.Services
             var response = await _httpClient.GetAsync(url);
             return response;
         }
+        public async Task<List<InstrumentoDTO>?> ObtenerInstrumentosPruebasAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("Instrumento");
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync();
+                var valores = JsonSerializer.Deserialize<List<InstrumentoDTO>>(json, _jsonOptions);
+                return valores;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error en la conexión: {ex.Message}");
+                return null;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Error al deserializar la respuesta: {ex.Message}");
+                return null;
+            }
+        }
+        public async Task<List<NormaDTO>?> ObtenerNormasAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("Norma");
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                var producto = JsonSerializer.Deserialize<List<NormaDTO>>(json, _jsonOptions);
+                return producto;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error en la conexión: {ex.Message}");
+                return null;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Error al deserializar la respuesta: {ex.Message}");
+                return null;
+            }
+        }
 
         public async Task<HttpResponseMessage> ActualizarPrototipoSID()
         {
             var prototipo = new PrototipoDTO
             {
-                Id = "2100", // debe existir en la BD para actualizar
+                Id = "687a89a7f955dd626c61f5cf", // debe existir en la BD para actualizar
                 Numero = "541252-ACT",
                 FechaEmision = new DateTime(2024, 9, 25),
                 FechaVencimiento = new DateTime(2028, 9, 25),
                 UrlArchivo = "https://www.cfe.mx",
-                MD5 = "1234567890ABCDEF",
-                Estatus = "RENOVADO",
+                MD5 = "",
+                Estatus = "VIGENTE",
                 FechaRegistro = DateTime.Now
 
             };
             HttpResponseMessage response = await PutAsJsonAsync("Prototipo", prototipo);
+            return response;
+        }
+        public async Task<HttpResponseMessage> AgregarInstrumentoAsync()
+        {
+            var nuevoInstrumento = new InstrumentoDTO
+            {
+                Id = "",
+                Nombre = "Bernier",
+                NumeroSerie = "25452121",
+                FechaCalibracion = new DateTime(2025, 8, 28),
+                FechaVencimientoCalibracion = new DateTime(2027, 8, 28),
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",              
+            };
+            // Serializamos y enviamos POST al endpoint
+            var json = JsonSerializer.Serialize(nuevoInstrumento, _jsonOptions);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("Instrumento", content);
+
             return response;
         }
     }
