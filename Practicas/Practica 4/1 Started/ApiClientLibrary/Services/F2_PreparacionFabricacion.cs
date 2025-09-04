@@ -39,31 +39,28 @@ namespace ApiClientLibrary.Services
                     new AuthenticationHeaderValue("Bearer", token);
             }
         }
-        private async Task<HttpResponseMessage> PostAsync<T>(string url, T dto)
-        {
-            var json = JsonSerializer.Serialize(dto);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(url, content);
-            return response;
-        }
-        private async Task<HttpResponseMessage> PutAsJsonAsync<T>(string url, T dto)
-        {
-            var json = JsonSerializer.Serialize(dto);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsJsonAsync(url, dto);
-            return response;
-        }
+
 
         #region ContratoCFE
         public async Task<HttpResponseMessage> RegistrarContratoCFE()
         {
             throw new NotImplementedException();
         }
+
+        public async Task<HttpResponseMessage> RegistrarContratoCFEExistente_NoRegistraContratoCFE()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpResponseMessage> RegistrarContratoCFE_DatosInvalidos()
         {
             throw new NotImplementedException();
         }
         public async Task<HttpResponseMessage> RegistrarContratoCFE_UrlArchivo_Invalida()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<HttpResponseMessage> ActualizarContratoCFE()
         {
             throw new NotImplementedException();
         }
@@ -75,19 +72,23 @@ namespace ApiClientLibrary.Services
         {
             throw new NotImplementedException();
         }
-        public async Task<HttpResponseMessage> ActualizarContratoCFE() {
+        public async Task<HttpResponseMessage> ActualizarContratoCFE_DatosInvalidos()
+        {
             throw new NotImplementedException();
         }
-        public async Task<HttpResponseMessage> ActualizarContratoCFE_DatosInvalidos() {
+        public async Task<HttpResponseMessage> ActualizarContratoCFEConGarantia()
+        {
             throw new NotImplementedException();
         }
-        public async Task<HttpResponseMessage> ActualizarContratoCFEConGarantia() {
+        public async Task<HttpResponseMessage> ActualizarContratoCFEConGarantia_DatosInvalidos()
+        {
             throw new NotImplementedException();
+        }
 
-        }
-        public async Task<HttpResponseMessage> ActualizarContratoCFEConGarantia_DatosInvalidos() {
-            throw new NotImplementedException();
-        }
+
+        #endregion
+
+        #region ContratoParticular
         public async Task<HttpResponseMessage> RegistrarContratoParticular()
         {
             throw new NotImplementedException();
@@ -95,8 +96,7 @@ namespace ApiClientLibrary.Services
         public async Task<HttpResponseMessage> RegistrarContratoParticular_DatosInvalidos()
         {
             throw new NotImplementedException();
-        }        
-        
+        }
         public async Task<HttpResponseMessage> ActualizarContratoParticular()
         {
             throw new NotImplementedException();
@@ -105,12 +105,10 @@ namespace ApiClientLibrary.Services
         {
             throw new NotImplementedException();
         }
-        
-        public async Task<HttpResponseMessage> ObtenerContratos(int pageNumber, int pageSize) 
+        #endregion
+        public async Task<HttpResponseMessage> ObtenerContratos(int pageNumber, int pageSize)
         {
             throw new NotImplementedException();
         }
     }
-    #endregion
-
 }

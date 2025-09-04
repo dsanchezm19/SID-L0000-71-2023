@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -26,22 +27,32 @@ namespace ApiClientLibrary.Services
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri($"{_configuration["ApiSettings:BaseUrl"]}{_basePath}")
-            };
+            };            
 
             var token = _configuration["ApiSettings:Token"];
             if (!string.IsNullOrEmpty(token))
             {
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
+                    new AuthenticationHeaderValue("Bearer", token);              
             }
+        }
+  
+        public async Task<HttpResponseMessage> ConsultarTodosLosExpedientes(int pageNumber, int pageSize)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_Exitoso()
         {
             throw new NotImplementedException();
+        }        
+
+        public async Task<HttpResponseMessage> ConsultarExpedientePorID()
+        {
+            throw new NotImplementedException();
         }
 
-        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error()
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error() 
         {
             throw new NotImplementedException();
         }

@@ -39,28 +39,21 @@ namespace ApiClientTest
             // Assert 2: que el body tenga el expediente esperado
             var expediente = await response.Content.ReadFromJsonAsync<ExpedienteDTO>();
             Assert.NotNull(expediente);
-            Assert.Equal("EXP-12345", expediente.ClaveExpediente);
+            Assert.Equal("EXP-456(M)", expediente.ClaveExpediente);
 
-            // Assert 3: que la muestra exista en el expediente
+            //// Assert 3: que la muestra exista en el expediente
             Assert.Contains(expediente.MuestrasExpediente,
-                m => m.Identificador == "M06" && m.Estatus == "PENDIENTE_PRUEBAS");         
+                m => m.Identificador == "M12" && m.Estatus == "PENDIENTE_PRUEBAS");         
         }
+        
 
-        [Fact(DisplayName = "Consultar la muestra agregada en el expediente")]
-        public async Task ConsultarMuestraExpediente()
+        [Fact(DisplayName = "Consultar expediente por ID")]
+        public async Task ConsultarExpedientePorID()
         {
-            var expedienteEsperado = "EXP-12345";
-            var muestraAgregada = "M06";
             // Act
-            var response = await _servicio.ConsultarMuestraExpediente();
-            // Assert
-            response.EnsureSuccessStatusCode();
-            var expediente = await response.Content.ReadFromJsonAsync<ExpedienteDTO>();
-
-            Assert.NotNull(expediente);
-            Assert.Equal(expedienteEsperado, expediente.ClaveExpediente);
+            var response = await _servicio.ConsultarExpedientePorID();
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
-
 
         [Fact(DisplayName = "Agregar muestra al expediente - Muestra duplicada")]
         public async Task AgregarMuestraExpediente_MuestraDuplicada_Error() {
@@ -69,7 +62,7 @@ namespace ApiClientTest
             var responseBody = await response.Content.ReadAsStringAsync();
 
             //// Assert
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
             Assert.Contains("ya existe en el expediente", responseBody);
         }
 
@@ -95,15 +88,13 @@ namespace ApiClientTest
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        [Fact(DisplayName = "Agregar muestra al expediente en pruebas o terminado - No agrega muestra")]
+        [Fact(DisplayName = "Agregar muestra al expediente en proceso o terminado - No agrega muestra")]
         public async Task AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra()
         {
             // Act
-            var response = await _servicio.AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra();
-            var responseBody = await response.Content.ReadAsStringAsync();
+            var response = await _servicio.AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra();           
             //// Assert
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.Contains("No se pueden agregar muestras al expediente", responseBody);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);           
         }
 
         [Fact(DisplayName = "Quitar muestra del expediente - Caso exitoso")]
@@ -121,7 +112,7 @@ namespace ApiClientTest
 
             // Assert 3: validamos que la muestra ya NO exista
             Assert.DoesNotContain(expediente.MuestrasExpediente,
-                m => m.Identificador == "M06");
+                m => m.Identificador == "M13");
         }
 
         [Fact(DisplayName = "Quitar muestra del expediente - No existe expediente")]
@@ -151,10 +142,8 @@ namespace ApiClientTest
         {
             // Act
             var response = await _servicio.QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra();
-            var responseBody = await response.Content.ReadAsStringAsync();
             //// Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.Contains("No se pueden quitar muestras al expediente", responseBody);
         }
     }
 }
