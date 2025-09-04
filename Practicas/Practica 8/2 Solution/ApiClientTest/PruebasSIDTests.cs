@@ -15,7 +15,7 @@ namespace ApiClientTest
         {
             _servicio = new F3_Pruebas();
         }
-        [Fact(DisplayName = "Consultar estado que guarda el expediente por Id - Caso exitoso")]
+        [Fact(DisplayName = "Consultar estado de pruebas por clave de expediente - Caso exitoso")]
         public async Task ConsultarEstadoExpedienteSID_Exitoso()
         {
             // Act
@@ -33,6 +33,16 @@ namespace ApiClientTest
 
             // Assert
             Assert.Null(response);
+        }
+
+        [Fact(DisplayName = "Consultar expediente pruebas no satisfactorias  por clave de expediente - Caso exitoso")]
+        public async Task ConsultaExpedienteDePruebasNoSatisfactoriasPorClaveSID()
+        {
+            // Act
+            var response = await _servicio.ObtenerExpedienteDePruebasNoSatisfactoriasPorClaveSID();
+
+            // Assert
+            Assert.NotNull(response);
         }
 
         [Fact(DisplayName = "Agregar resultado de prueba a una muestra - Caso exitoso")]
