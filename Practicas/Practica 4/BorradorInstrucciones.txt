@@ -42,3 +42,15 @@ es importante que Tipo y TipoContrato sea: ContratoParticular
 -Actualizar la URL de la prueba de rutina: 68b74b041508cbf69f2cd733, se cambio la URL por: https://www.cfe.gob.mx/transparencia_etica/Pages/default.aspx
 -Actualizar otras pruebas o documento con información invalida (no contiene el id a actualizar)
 -Correr la prueba "Obtener otras pruebas o documentos"
+
+
+---Ejercicios para la práctica
+1. Agregar contrato CFE
+2. Consultar el contrato (anotar el id)
+3. Agregar posición al contrato 
+4. Consultar un ID inexitente
+5. Insertar contrato existente
+6. Intentar quitar las partidas
+7. Agregar la misma partida
+8. Intentar registrar contrato con url inválida
+

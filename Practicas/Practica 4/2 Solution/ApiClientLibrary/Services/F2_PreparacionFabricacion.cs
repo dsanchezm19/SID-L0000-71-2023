@@ -84,6 +84,37 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PostAsync("Contratos", contrato);
             return response;
         }
+
+        public async Task<HttpResponseMessage> RegistrarContratoCFEExistente_NoRegistraContratoCFE()
+        {
+            var contrato = new ContratoCFEDTO
+            {
+                Tipo = "ContratoCFE",
+                Id = "",
+                TipoContrato = "ContratoCFE",
+                NoContrato = "9100026571",
+                Estatus = "ACTIVO",
+                DetalleContrato = new List<DetalleContratoDTO>
+                    {
+                        new DetalleContratoDTO
+                        {
+                            PartidaContrato = "55",
+                            DescripcionAviso = "CABLE CONTROL CU PVC + PVC  8X10  C/B OCHO CONDUCTORES DE COBRE, CALIBRE 10 AWG, FORRADOS DE AISLAMIENTO DE PVC-LS, RPI, 75°C, 600V, CON BLINDAJE DE MALLA TRENZADA DE COBRE, CUBIERTA DE PVC COLOR NEGRO. ESPECIFICACIÓN CFE E0000-20/2005 TOTAL DE TRAMOS: 1081304",
+                            AreaDestinoCFE = "JALISCO D144 TLAQUEPAQUE JAL.COL. LAS JUNTAS",
+                            Cantidad = 500,
+                            Unidad = "Metros",
+                            ImporteTotal = 93055.00m
+                        }
+                    },
+                UrlArchivo = "https://www.cfe.mx",
+                MD5 = "",
+                FechaEntregaCFE = new DateTime(2025, 7, 18)
+            };
+
+            HttpResponseMessage response = await PostAsync("Contratos", contrato);
+            return response;
+        }
+
         public async Task<HttpResponseMessage> RegistrarContratoCFE_DatosInvalidos()
         {
             var contrato = new ContratoCFEDTO
@@ -315,6 +346,8 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PutAsJsonAsync("Contratos", contrato);
             return response;
         }
+
+
         #endregion
 
         #region ContratoParticular
