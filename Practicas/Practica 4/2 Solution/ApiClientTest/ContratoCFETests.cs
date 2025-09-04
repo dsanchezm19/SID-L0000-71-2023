@@ -29,6 +29,15 @@ namespace ApiClientTest
             Assert.False(string.IsNullOrWhiteSpace(responseBody));
         }
 
+        [Fact(DisplayName = "Registrar contrato CFE que ya existe - No lo debe registrar")]
+        public async Task RegistrarContratoCFEExistente_NoRegistraContratoCFE()
+        {
+            // Act
+            var response = await _servicio.RegistrarContratoCFEExistente_NoRegistraContratoCFE();
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
         [Fact(DisplayName = "Registrar contrato CFE - Datos inválidos")]
         public async Task RegistrarContratoCFE_DatosInvalidos()
         {
@@ -128,5 +137,7 @@ namespace ApiClientTest
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
+
+
     }
 }
