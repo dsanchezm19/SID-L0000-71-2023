@@ -54,74 +54,54 @@ namespace ApiClientLibrary.Services
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_Exitoso()
         {
-            var Expediente = "EXP-12345";
-            var muestra = new 
-            {
-                Identificador = "M06",
-                Estatus = ""
-            };
+            var Expediente = "EXP-456(M)";
+            var muestra = "M13";
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
-        }
+        }        
 
-        public async Task<HttpResponseMessage> ConsultarMuestraExpediente()
+        public async Task<HttpResponseMessage> ConsultarExpedientePorID()
         {
-            
-            var Expediente = "EXP-12345";
-            var response = await _httpClient.GetAsync($"ConsultaExpediente/{Expediente}");            
+
+            var id = "68b90287b65f07e4b5ffb529";
+            var response = await _httpClient.GetAsync($"ExpedientePruebas/{id}/");
             return response;
         }
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error() {
-            var Expediente = "EXP-12345";
-            var muestra = new
-            {
-                Identificador = "M06",
-                Estatus = "PENDIENTE_PRUEBAS"
-            };
+            var Expediente = "EXP-456(M)";
+            var muestra = "M13";
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
         }
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_NoExisteExpediente()
         {
             var Expediente = "EXP-";
-            var muestra = new
-            {
-                Identificador = "M1",
-                Estatus = ""
-            };
+            var muestra ="M1";
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);            
             return response;
         }
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_DatosInvalidos()
         {
-            var Expediente = "EXP-12345";
-            var muestra = new
-            {
-                Identificador = "Mx",
-                Estatus = "CANCELADO"
-            };
+            var Expediente = "EXP-456(M)";
+            var muestra = "M";
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
         }
 
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra()
         {
-            var Expediente = "EXP-02";
-            var muestra = new
-            {
-                Identificador = "M8",
-                Estatus = "PENDIENTE_PRUEBAS"
-            };
+            var Expediente = "EXP-18";
+            var muestra = "M20";
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
         }
 
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_Exitoso()
         {
-            var expediente = "EXP-12345";
-            var muestra = "M06";          
+            var expediente = "EXP-456(M)";
+            var muestra = "M13";          
             var content = new StringContent(string.Empty);
             HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}",content);            
             return response;
@@ -138,7 +118,7 @@ namespace ApiClientLibrary.Services
 
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_NoExisteMuestra()
         {
-            var expediente = "EXP-12345";
+            var expediente = "EXP-456(M)";
             var muestra = "MX";
             var content = new StringContent(string.Empty);
             HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}", content);
@@ -147,7 +127,7 @@ namespace ApiClientLibrary.Services
 
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra()
         {
-            var expediente = "EXP-02";
+            var expediente = "EXP-18";
             var muestra = "M01";
             var content = new StringContent(string.Empty);
             HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}", content);
