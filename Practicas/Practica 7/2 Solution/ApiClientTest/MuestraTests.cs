@@ -19,6 +19,15 @@ namespace ApiClientTest
             _servicio = new F2_PreparacionFabricacion();
         }
 
+        [Fact(DisplayName = "Consultar todos los expedientes")]
+        public async Task ConsultarTodosLosExpedientes()
+        {
+            // Act
+            var response = await _servicio.ConsultarTodosLosExpedientes(1,50);
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
         [Fact(DisplayName = "Agregar muestra al expediente - Caso exitoso")]
         public async Task AgregarMuestraExpediente_Exitoso()
         {
@@ -36,6 +45,22 @@ namespace ApiClientTest
             Assert.Contains(expediente.MuestrasExpediente,
                 m => m.Identificador == "M06" && m.Estatus == "PENDIENTE_PRUEBAS");         
         }
+
+        [Fact(DisplayName = "Consultar la muestra agregada en el expediente")]
+        public async Task ConsultarMuestraExpediente()
+        {
+            var expedienteEsperado = "EXP-12345";
+            var muestraAgregada = "M06";
+            // Act
+            var response = await _servicio.ConsultarMuestraExpediente();
+            // Assert
+            response.EnsureSuccessStatusCode();
+            var expediente = await response.Content.ReadFromJsonAsync<ExpedienteDTO>();
+
+            Assert.NotNull(expediente);
+            Assert.Equal(expedienteEsperado, expediente.ClaveExpediente);
+        }
+
 
         [Fact(DisplayName = "Agregar muestra al expediente - Muestra duplicada")]
         public async Task AgregarMuestraExpediente_MuestraDuplicada_Error() {

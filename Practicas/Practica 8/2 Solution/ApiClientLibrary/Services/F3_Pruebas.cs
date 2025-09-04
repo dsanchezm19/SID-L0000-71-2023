@@ -70,13 +70,37 @@ namespace ApiClientLibrary.Services
         // --------------------------------------------------------------------------
 
         /// <summary>
-        ///  Obtener el expediente por su clave en el SID.
+        ///  Obtener el expediente de pruebas por su clave en el SID.
         /// </summary>
         /// <returns></returns>
         public async Task<ExpedienteSIDDTO> ObtenerExpedientePorClaveSID()
         {
-            var claveExpediente = "EXP-01";
+            var claveExpediente = "EXP-456(M)";
             var response = await _httpClient.GetAsync($"ConsultaExpediente/{claveExpediente}");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var expedientes = JsonSerializer.Deserialize<List<ExpedienteSIDDTO>>(jsonResponse,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                // Como solo esperas uno, regresamos el primero
+                return expedientes?.FirstOrDefault();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        ///  Obtener el expediente de pruebas no satisfactorios por su clave en el SID.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ExpedienteSIDDTO> ObtenerExpedienteDePruebasNoSatisfactoriasPorClaveSID()
+        {
+            var claveExpediente = "EXP-456(M)";
+            var response = await _httpClient.GetAsync($"PruebasNoSatisfactorias/{claveExpediente}");
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -98,16 +122,16 @@ namespace ApiClientLibrary.Services
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public async Task<bool> AgregarResultadoPruebaAsync() {
-            var claveExpediente = "EXP-02";
+            var claveExpediente = "EXP-456(M)";
             var idMuestra = "M01";
 
             // Creamos el body con ejemplo de datos
             var resultado = new ResultadoPruebaRequestSIDDTO
             {
-                IdPrueba = "687a83d143657ba3e593df9f",
-                IdValorReferencia = "687a8ed79a031ead55f89972",
-                FechaPrueba = DateTime.Parse("2025-09-03T19:40:08.582Z"),
-                OperadorPrueba = "Operador01",
+                IdPrueba = "68b09fac663d1c38a0647b28",
+                IdValorReferencia = "68b89ff0764692eee3a2a3a9",
+                FechaPrueba = DateTime.Parse("2025-09-04T19:35:06.923Z"),
+                OperadorPrueba = "Juan Perez",
                 IdInstrumentoMedicion = "68a77eb9be14ddad3f158293",
                 ValorMedido = 105,
                 Resultado = "SATISFACTORIO",
@@ -129,9 +153,10 @@ namespace ApiClientLibrary.Services
         public async Task<HttpResponseMessage> IndicarResultadoSatisfactorioPruebasSIDAsync() { 
             var claveExpediente = "EXP-02";
 
-            var response = await _httpClient.PutAsync($"TerminarPruebasExpediente/{claveExpediente}");
+            //var response = await _httpClient.PutAsync($"TerminarPruebasExpediente/{claveExpediente}");
             // Retornamos true si fue exitoso, false si no
-            return response.IsSuccessStatusCode;
+           // return response.IsSuccessStatusCode;
+           throw new NotImplementedException();
         }
 
     }
