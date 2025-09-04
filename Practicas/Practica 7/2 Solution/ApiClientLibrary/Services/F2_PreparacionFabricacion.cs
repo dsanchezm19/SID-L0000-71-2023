@@ -27,13 +27,13 @@ namespace ApiClientLibrary.Services
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri($"{_configuration["ApiSettings:BaseUrl"]}{_basePath}")
-            };
+            };            
 
             var token = _configuration["ApiSettings:Token"];
             if (!string.IsNullOrEmpty(token))
             {
                 _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
+                    new AuthenticationHeaderValue("Bearer", token);              
             }
         }
   
@@ -45,15 +45,30 @@ namespace ApiClientLibrary.Services
             return response;
         }
 
+        public async Task<HttpResponseMessage> ConsultarTodosLosExpedientes(int pageNumber, int pageSize)
+        {
+            var url = $"ExpedientePruebas?pageNumber={pageNumber}&pageSize={pageSize}";
+            var response = await _httpClient.GetAsync(url);
+            return response;
+        }
+
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_Exitoso()
         {
             var Expediente = "EXP-12345";
             var muestra = new 
             {
                 Identificador = "M06",
-                Estatus = "PENDIENTE_PRUEBAS"
+                Estatus = ""
             };
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> ConsultarMuestraExpediente()
+        {
+            
+            var Expediente = "EXP-12345";
+            var response = await _httpClient.GetAsync($"ConsultaExpediente/{Expediente}");            
             return response;
         }
 
