@@ -22,7 +22,7 @@ namespace ApiClientTest
         public async Task AgregarMuestraExpediente_Exitoso()
         {
             // Act
-            var response = await _servicio.AgregarMuestraExpediente_Exitoso(); 
+            var response = await _servicio.AgregarMuestraExpediente_Exitoso();
             // Assert 1: que haya sido exitoso
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -33,7 +33,19 @@ namespace ApiClientTest
 
             // Assert 3: que la muestra exista en el expediente
             Assert.Contains(expediente.MuestrasExpediente,
-                m => m.Identificador == "CABLE MÚLTIPLE AAC-AAC" && m.Estatus == "PENDIENTE_PRUEBAS");         
+                m => m.Identificador == "M06" && m.Estatus == "PENDIENTE_PRUEBAS");
+        }
+
+        [Fact(DisplayName = "Agregar muestra al expediente - Muestra duplicada")]
+        public async Task AgregarMuestraExpediente_MuestraDuplicada_Error()
+        {
+            // Act
+            var response = await _servicio.AgregarMuestraExpediente_MuestraDuplicada_Error();
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            //// Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Contains("ya existe en el expediente", responseBody);
         }
 
         [Fact(DisplayName = "Agregar muestra al expediente - No existe expediente")]
@@ -58,13 +70,23 @@ namespace ApiClientTest
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
+        [Fact(DisplayName = "Agregar muestra al expediente en pruebas o terminado - No agrega muestra")]
+        public async Task AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra()
+        {
+            // Act
+            var response = await _servicio.AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            //// Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Contains("No se pueden agregar muestras al expediente", responseBody);
+        }
 
         [Fact(DisplayName = "Quitar muestra del expediente - Caso exitoso")]
         public async Task QuitarMuestraExpediente_Exitoso()
         {
             // Act
             var response = await _servicio.QuitarMuestraExpediente_Exitoso();
-            
+
             // Assert 1: que la API responda OK
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -74,7 +96,7 @@ namespace ApiClientTest
 
             // Assert 3: validamos que la muestra ya NO exista
             Assert.DoesNotContain(expediente.MuestrasExpediente,
-                m => m.Identificador == "CABLE MÚLTIPLE AAC-AAC");
+                m => m.Identificador == "M06");
         }
 
         [Fact(DisplayName = "Quitar muestra del expediente - No existe expediente")]
@@ -98,6 +120,16 @@ namespace ApiClientTest
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Contains("No se encuentra la muestra", responseBody);
         }
-        
+
+        [Fact(DisplayName = "Quitar muestra al expediente en pruebas o terminado - No quita muestra")]
+        public async Task QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra()
+        {
+            // Act
+            var response = await _servicio.QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            //// Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Contains("No se pueden quitar muestras al expediente", responseBody);
+        }
     }
 }

@@ -40,6 +40,11 @@ namespace ApiClientLibrary.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error()
+        {
+            throw new NotImplementedException();
+        }
         public async Task<HttpResponseMessage> AgregarMuestraExpediente_NoExisteExpediente()
         {
             throw new NotImplementedException();
@@ -49,6 +54,12 @@ namespace ApiClientLibrary.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_Exitoso()
         {
             throw new NotImplementedException();
@@ -60,6 +71,11 @@ namespace ApiClientLibrary.Services
         }
 
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_NoExisteMuestra()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<HttpResponseMessage> QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra()
         {
             throw new NotImplementedException();
         }

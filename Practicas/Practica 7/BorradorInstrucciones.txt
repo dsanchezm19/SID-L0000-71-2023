@@ -1,8 +1,11 @@
--Agregar la muestra CABLE MÚLTIPLE AAC-AAC
+-Agregar la muestra M06 al Expediente 
+-Correr prueba "Agregar muestra al expediente - Muestra duplicada"  (M06)
 -Agregar muestra en expediente que no existe 
 -Agregar muestra con datos incorrectos (la prueba por ahora no pasa ya que no se ha validado)
+-Agregar muestra a un expediente que está en proceso o terminado (estatus incorrecto para agregar muestra)
 
--Quitar muestra CABLE MÚLTIPLE AAC-AAC del expediente
+-Quitar muestra M06 del expediente
 -Quitar muestra expediente que no existe
 -Quitar muestra expediente que no contiene la muestra
+-Quitar muestra a un expediente que está en proceso o terminado (estatus incorrecto para agregar muestra)
 

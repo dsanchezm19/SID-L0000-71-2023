@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -49,7 +50,18 @@ namespace ApiClientLibrary.Services
             var Expediente = "EXP-12345";
             var muestra = new 
             {
-                Identificador = "CABLE MÚLTIPLE AAC-AAC",
+                Identificador = "M06",
+                Estatus = "PENDIENTE_PRUEBAS"
+            };
+            HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_MuestraDuplicada_Error() {
+            var Expediente = "EXP-12345";
+            var muestra = new
+            {
+                Identificador = "M06",
                 Estatus = "PENDIENTE_PRUEBAS"
             };
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
@@ -78,10 +90,23 @@ namespace ApiClientLibrary.Services
             HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
             return response;
         }
+
+        public async Task<HttpResponseMessage> AgregarMuestraExpediente_ExpedienteStatusInvalido_NoAgregaMuestra()
+        {
+            var Expediente = "EXP-02";
+            var muestra = new
+            {
+                Identificador = "M8",
+                Estatus = "PENDIENTE_PRUEBAS"
+            };
+            HttpResponseMessage response = await PutAsJsonAsync($"AgregaMuestraExpediente/{Expediente}", muestra);
+            return response;
+        }
+
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_Exitoso()
         {
             var expediente = "EXP-12345";
-            var muestra = "CABLE MÚLTIPLE AAC-AAC";          
+            var muestra = "M06";          
             var content = new StringContent(string.Empty);
             HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}",content);            
             return response;
@@ -90,7 +115,7 @@ namespace ApiClientLibrary.Services
         public async Task<HttpResponseMessage> QuitarMuestraExpediente_NoExisteExpediente()
         {
             var expediente = "E";
-            var muestra = "CABLE MÚLTIPLE AAC-AAC";
+            var muestra = "M06";
             var content = new StringContent(string.Empty);
             HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}", content);
             return response;
@@ -105,6 +130,13 @@ namespace ApiClientLibrary.Services
             return response;
         }
 
-
+        public async Task<HttpResponseMessage> QuitarMuestraExpediente_ExpedienteStatusInvalido_NoQuitaMuestra()
+        {
+            var expediente = "EXP-02";
+            var muestra = "M01";
+            var content = new StringContent(string.Empty);
+            HttpResponseMessage response = await PutAsJsonAsync($"QuitarMuestraExpediente/{expediente}/{muestra}", content);
+            return response;
+        }
     }
 }
